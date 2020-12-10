@@ -1,0 +1,18 @@
+﻿@using LogicCore;
+
+@model Team
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Save", "Team", null, FormMethod.Post, true, null))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.DisplayFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description)
+
+        @Html.DisplayFor(m => m.Members)
+        @Html.RenderPartialAsync("Member", Model.Members)
+    }
+</div>

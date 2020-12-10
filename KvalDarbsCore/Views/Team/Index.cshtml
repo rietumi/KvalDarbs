@@ -1,0 +1,32 @@
+﻿@using LogicCore;
+
+@model Team
+
+@{ 
+    this.Layout = "_Layout";
+}
+
+<div class="container">
+    @if (this.Model == null)
+    {
+        <div class="container">
+            <h1>
+                @Text.NoTeam 
+            </h1>
+        </div>
+        <div>
+            @Html.ActionLink(Text.CreateNewTeam, "Create", "Team", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+    else
+    {
+        <div id="teamMembers" class="container">
+            @foreach (var member in this.Model.Members)
+            {
+                <div class="member">
+                    @(member.FullName)
+                </div>
+            }
+        </div>
+    }
+</div>

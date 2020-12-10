@@ -24,13 +24,12 @@
   <Comment CommentText="Izveido vienu kopīgu treniņu un tad var labot individuāli">
     <Position X="14.545" Y="2.717" Height="0.75" Width="1.7" />
   </Comment>
-  <Class Name="LogicCore.User">
+  <Class Name="LogicCore.ApplicationUser">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAIAAACAAAAAAAAAAAAQABAAAAAAAAQAAAAAAAAA=</HashCode>
-      <FileName>User.cs</FileName>
+      <HashCode>AAAAAIAACAAAAAAAAAAAAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicCore.Team">
     <Position X="9.25" Y="0.75" Width="1.5" />
@@ -43,7 +42,7 @@
   <Class Name="LogicCore.Training">
     <Position X="12.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAADAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Training.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -51,7 +50,7 @@
   <Class Name="LogicCore.Task">
     <Position X="12.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIQA=</HashCode>
+      <HashCode>AAACAAAAAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAIQA=</HashCode>
       <FileName>Task.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -67,7 +66,7 @@
   <Class Name="LogicCore.Result">
     <Position X="4" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAIQA=</HashCode>
+      <HashCode>AAACAACAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAIQA=</HashCode>
       <FileName>Result.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -75,7 +74,7 @@
   <Class Name="LogicCore.Competition">
     <Position X="5.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAIAAAQAAAAAAABBAQAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAACAAAAAAAIAAAQAAAAAAABBAQAAAAAAAAA=</HashCode>
       <FileName>Competition.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -83,7 +82,7 @@
   <Class Name="LogicCore.Goal">
     <Position X="9.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAEAAAgAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAEAACgAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Goal.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

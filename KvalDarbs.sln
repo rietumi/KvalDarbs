@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KvalDarbs.Tests", "KvalDarbs.Tests\KvalDarbs.Tests.csproj", "{4D9719E7-B914-4ECC-BEF6-8A4FAF69FF13}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KvalDarbsCore", "KvalDarbsCore\KvalDarbsCore.csproj", "{0F688004-475C-445A-A1BC-F995521AB346}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KvalDarbsCore", "KvalDarbsCore\KvalDarbsCore.csproj", "{0F688004-475C-445A-A1BC-F995521AB346}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DDFF6202-0218-4EC1-A525-97967CBD53A4} = {DDFF6202-0218-4EC1-A525-97967CBD53A4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicCore", "LogicCore\LogicCore.csproj", "{DDFF6202-0218-4EC1-A525-97967CBD53A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicCore", "LogicCore\LogicCore.csproj", "{DDFF6202-0218-4EC1-A525-97967CBD53A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KvalDarbCoreTest", "KvalDarbCoreTest\KvalDarbCoreTest.csproj", "{E5884E0D-47F3-46B4-8F0C-E6D575B33F7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,10 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D9719E7-B914-4ECC-BEF6-8A4FAF69FF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D9719E7-B914-4ECC-BEF6-8A4FAF69FF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D9719E7-B914-4ECC-BEF6-8A4FAF69FF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D9719E7-B914-4ECC-BEF6-8A4FAF69FF13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0F688004-475C-445A-A1BC-F995521AB346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0F688004-475C-445A-A1BC-F995521AB346}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F688004-475C-445A-A1BC-F995521AB346}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,6 +26,10 @@ Global
 		{DDFF6202-0218-4EC1-A525-97967CBD53A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDFF6202-0218-4EC1-A525-97967CBD53A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDFF6202-0218-4EC1-A525-97967CBD53A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5884E0D-47F3-46B4-8F0C-E6D575B33F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5884E0D-47F3-46B4-8F0C-E6D575B33F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5884E0D-47F3-46B4-8F0C-E6D575B33F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5884E0D-47F3-46B4-8F0C-E6D575B33F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
