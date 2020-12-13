@@ -27,15 +27,15 @@
   <Class Name="LogicCore.ApplicationUser">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAACAAAAAAAAAAAAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ApplicationUser.cs</FileName>
+      <HashCode>AAAAAIAAAAAAAIAAAAAAAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModel\ApplicationUser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicCore.Team">
     <Position X="9.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAAAAAAAgAAAAAAAAAAAAAgAAAAAAAAAAAAAAIAQ=</HashCode>
-      <FileName>Team.cs</FileName>
+      <HashCode>gAACAAAAAAAgAAAAAAAAAAQAAgAAAACAAAAEAAAAIAQ=</HashCode>
+      <FileName>DataModel\Team.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -43,23 +43,23 @@
     <Position X="12.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAADAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
-      <FileName>Training.cs</FileName>
+      <FileName>DataModel\Training.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicCore.Task">
     <Position X="12.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAIQA=</HashCode>
-      <FileName>Task.cs</FileName>
+      <HashCode>AAACAAAAAACAAAAAAAEAAAAAGAAAAAAAAAAAAAAAIQA=</HashCode>
+      <FileName>DataModel\Task.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicCore.Example">
-    <Position X="12.75" Y="7.25" Width="1.5" />
+    <Position X="14.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Example.cs</FileName>
+      <FileName>DataModel\Example.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -67,7 +67,7 @@
     <Position X="4" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAACAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAIQA=</HashCode>
-      <FileName>Result.cs</FileName>
+      <FileName>DataModel\Result.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -75,23 +75,23 @@
     <Position X="5.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAACAAAAAAAIAAAQAAAAAAABBAQAAAAAAAAA=</HashCode>
-      <FileName>Competition.cs</FileName>
+      <FileName>DataModel\Competition.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicCore.Goal">
-    <Position X="9.25" Y="3.25" Width="1.5" />
+    <Position X="9.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAEAACgAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Goal.cs</FileName>
+      <FileName>DataModel\Goal.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicCore.Comment">
     <Position X="4" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
-      <FileName>Comment.cs</FileName>
+      <HashCode>AAACAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>DataModel\Comment.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -99,7 +99,7 @@
     <Position X="2.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
-      <FileName>Error.cs</FileName>
+      <FileName>DataModel\Error.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -107,15 +107,15 @@
     <Position X="0.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAIAAAAAAAAAAAQAAABAAAAAAAA=</HashCode>
-      <FileName>SystemError.cs</FileName>
+      <FileName>DataModel\SystemError.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicCore.Exercise">
-    <Position X="12.75" Y="5.25" Width="1.5" />
+    <Position X="12.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAQAAAAAA=</HashCode>
-      <FileName>Exercise.cs</FileName>
+      <FileName>DataModel\Exercise.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -123,7 +123,7 @@
     <Position X="11" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAQAEAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>TeamTraining.cs</FileName>
+      <FileName>DataModel\TeamTraining.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -131,42 +131,35 @@
     <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entity.cs</FileName>
+      <FileName>DataModel\Entity.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="LogicCore.IValidation">
     <Position X="0.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Validation.cs</FileName>
+      <FileName>DataModel\Validation.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="LogicCore.UserType">
-    <Position X="7.5" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAAgAAAQAAAgAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>UserType.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Enum Name="LogicCore.CompetitionType">
     <Position X="5.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAQAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAEAAAAAA=</HashCode>
-      <FileName>CompetitionType.cs</FileName>
+      <FileName>DataModel\CompetitionType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="LogicCore.ErrorType">
     <Position X="4" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>ErrorType.cs</FileName>
+      <FileName>DataModel\ErrorType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="LogicCore.PriorityType">
     <Position X="9.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>PriorityType.cs</FileName>
+      <FileName>DataModel\PriorityType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

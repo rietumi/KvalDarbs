@@ -117,17 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Pievienot</value>
+  </data>
+  <data name="AddMember" xml:space="preserve">
+    <value>Pievienot jaunu komandas biedru</value>
+  </data>
+  <data name="AddTraining" xml:space="preserve">
+    <value>Pievienot treniņu</value>
+  </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>Sporta komanda</value>
   </data>
+  <data name="CoachIs" xml:space="preserve">
+    <value>Treneris: {0}</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Atkārtota parole</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopēt</value>
   </data>
   <data name="CreateNewAccount" xml:space="preserve">
     <value>Izveidot jaunu lietotāju</value>
   </data>
   <data name="CreateNewTeam" xml:space="preserve">
     <value>Izveidot jaunu komandu</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Dzēst</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-pasts</value>
@@ -147,11 +165,23 @@
   <data name="Name" xml:space="preserve">
     <value>Vārds</value>
   </data>
+  <data name="NewMember" xml:space="preserve">
+    <value>Jaunais komandas biedrs: </value>
+  </data>
   <data name="NoTeam" xml:space="preserve">
     <value>Nav komanda</value>
   </data>
+  <data name="NoTrainings" xml:space="preserve">
+    <value>Komandai nav ieplānoti treniņi</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Atvērt</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Parole</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefona numurs</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privātums</value>
@@ -165,13 +195,28 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Atcerēties mani?</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Noņemt</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Sākums</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Iesniegt</value>
   </data>
   <data name="Surname" xml:space="preserve">
     <value>Uzvārds</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>Komanda</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Treniņš</value>
+  </data>
+  <data name="Trainings" xml:space="preserve">
+    <value>Treniņi</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Lietotājvārds</value>
   </data>
 </root>

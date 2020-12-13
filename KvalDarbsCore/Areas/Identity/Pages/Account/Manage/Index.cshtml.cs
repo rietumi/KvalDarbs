@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using LogicCore;
+using LogicCore.Util;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -34,20 +35,35 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [RequiredLocalized]
+            [Display(Name = "Username", ResourceType = typeof(Text))]
+            public string Username { get; set; }
+
+            [RequiredLocalized]
+            [Display(Name = "Name", ResourceType = typeof(Text))]
+            public string Name { get; set; }
+
+            [RequiredLocalized]
+            [Display(Name = "Surname", ResourceType = typeof(Text))]
+            public string Surname { get; set; }
+
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "PhoneNumber", ResourceType = typeof(Text))]
             public string PhoneNumber { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
-            Username = userName;
+            var userName = user.UserName;
+            var phoneNumber = user.PhoneNumber;
+            var name = user.Name;
+            var surname = user.Surname;
 
             Input = new InputModel
             {
+                Username = userName,
+                Name = name,
+                Surname = surname,
                 PhoneNumber = phoneNumber
             };
         }
@@ -78,19 +94,45 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            bool changes = false;
+            
+            if (user.Name != Input.Name)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
+                changes = true;
+                user.Name = Input.Name;
+            }
+
+            if (user.Surname != Input.Surname)
+            {
+                changes = true;
+                user.Surname = Input.Surname;
+            }
+
+            if (user.UserName != Input.Username)
+            {
+                changes = true;
+                user.UserName = Input.Username;
+            }
+
+            if (user.PhoneNumber != Input.PhoneNumber)
+            {
+                changes = true;
+                user.PhoneNumber = Input.PhoneNumber;
+            }
+
+            if (changes)
+            {
+                var updateUser = await _userManager.UpdateAsync(user);
+
+                if (!updateUser.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
-            }
 
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+                await _signInManager.RefreshSignInAsync(user);
+                StatusMessage = "Your profile has been updated";
+            }
             return RedirectToPage();
         }
     }

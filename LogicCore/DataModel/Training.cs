@@ -7,7 +7,7 @@ namespace LogicCore
     {
         public int Id { get; set; }
 
-        public List<Task> Tasks { get; set; }
+        public List<TrainingTask> Tasks { get; set; }
 
         public ApplicationUser User { get; set; }
 

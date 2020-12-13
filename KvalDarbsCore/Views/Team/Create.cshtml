@@ -2,17 +2,23 @@
 
 @model Team
 @{
+    ViewData["Title"] = Text.Team;
     Layout = "_Layout";
 }
 
 <div class="container">
-    @using (Html.BeginForm("Save", "Team", null, FormMethod.Post, true, null))
+    @using (Html.BeginForm("Create", "Team", null, FormMethod.Post, true, null))
     {
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-        @Html.DisplayFor(m => m.Description)
-        @Html.TextBoxFor(m => m.Description)
 
-        @Html.DisplayFor(m => m.Members)
-        @Html.RenderPartialAsync("Member", Model.Members)
+        <div class="card">
+            @Html.LabelFor(m => m.Name)
+            @Html.EditorFor(m => m.Name)
+        </div>
+        <div class="card">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description)
+        </div>
+        <input type="submit" class="btn btn-primary" value="@Text.Submit"/>
     }
 </div>

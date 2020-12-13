@@ -1,0 +1,105 @@
+﻿@using LogicCore
+
+@model Team
+@{
+    ViewData["Title"] = this.Model.Name;
+    Layout = "_Layout";
+    var isCoach = (ViewData["IsCoach"] as bool?).GetValueOrDefault();
+}
+
+<script src="~/js/Team.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h2>@this.Model.Name</h2>
+        </div>
+        @if (isCoach)
+        {
+            <div class="col-2">
+                @this.Html.ActionLink("Dzēst", "DeleteTeam", "Team", new { teamId = this.Model.Id }, new { @class = "btn btn-primary float-right" })
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">@Text.Team</div>
+                <div class="card-body container">
+                    @this.Html.ValidationSummary()
+                    @foreach (var member in this.Model.Members)
+                    {
+                        <div class="row">
+                            <div class="col-11">
+                                @member.User.FullName
+                            </div>
+                            @if (isCoach)
+                            {
+                                <div class="col-1">
+                                    @this.Html.ActionLink("X", "DeleteMember", "Team", new { member.UserId, member.TeamId })
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @if (isCoach)
+                    {
+                        <div class="row">
+                            <div class="col-12 addMember">
+                                <button type="button" class="btn btn-primary float-right" id="addMember">@Text.AddMember</button>
+                            </div>
+                            <div class="col-12 addMember" style="display:none">
+                                @using (this.Html.BeginForm("AddMember", "Team", null, FormMethod.Post, true, null))
+                                {
+                                    @this.Html.HiddenFor(m => m.Id)
+                                    <div class="form-group">
+                                        @this.Html.LabelFor(m => m.NewMemberId)
+                                        @this.Html.DropDownListFor(m => m.NewMemberId, this.Model.PossibleMembers, new { @class = "w-75" })
+                                    </div>
+                                    <input type="submit" class="btn btn-primary" value="@Text.Add" />
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">@Text.Trainings</div>
+                <div class="card-body container">
+                    @if (this.Model.TeamTrainings == null || this.Model.TeamTrainings.Count == 0)
+                    {
+                        <div class="row">
+                            <div class="col-12">
+                                @Text.NoTrainings
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (var training in this.Model.TeamTrainings.Where(m => m.Date <= DateTime.Today).OrderBy(m => m.Date))
+                        {
+                            <div class="row">
+                                <div class="col-12">
+                                    @training.Date.ToShortDateString()
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @if (isCoach)
+                    {
+                        <div class="row">
+                            <div class="col-12">
+                                @this.Html.ActionLink(Text.AddTraining, "Add", "Training", new { teamId = this.Model.Id }, new { @class = "btn btn-primary float-right" } )
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

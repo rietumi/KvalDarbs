@@ -4,14 +4,16 @@ using KvalDarbsCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KvalDarbsCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201211150533_AddManyToManyUserTeam")]
+    partial class AddManyToManyUserTeam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -294,7 +296,12 @@ namespace KvalDarbsCore.Data.Migrations
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TrainingId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TrainingId");
 
                     b.ToTable("Tasks");
                 });
@@ -367,21 +374,6 @@ namespace KvalDarbsCore.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Trainings");
-                });
-
-            modelBuilder.Entity("LogicCore.TrainingTask", b =>
-                {
-                    b.Property<int>("TrainingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TrainingId", "TaskId");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("TrainingTasks");
                 });
 
             modelBuilder.Entity("LogicCore.UserTeam", b =>
@@ -574,6 +566,13 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasForeignKey("CompetitionId");
                 });
 
+            modelBuilder.Entity("LogicCore.Task", b =>
+                {
+                    b.HasOne("LogicCore.Training", null)
+                        .WithMany("Tasks")
+                        .HasForeignKey("TrainingId");
+                });
+
             modelBuilder.Entity("LogicCore.Team", b =>
                 {
                     b.HasOne("LogicCore.ApplicationUser", "Coach")
@@ -597,21 +596,6 @@ namespace KvalDarbsCore.Data.Migrations
                     b.HasOne("LogicCore.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("LogicCore.TrainingTask", b =>
-                {
-                    b.HasOne("LogicCore.Task", "Task")
-                        .WithMany("Trainings")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LogicCore.Training", "Training")
-                        .WithMany("Tasks")
-                        .HasForeignKey("TrainingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("LogicCore.UserTeam", b =>

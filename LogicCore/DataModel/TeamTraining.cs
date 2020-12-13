@@ -7,24 +7,12 @@ namespace LogicCore
 {
     public class TeamTraining : IEntity
     {
-        public List<Training> Trainings
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public List<Training> Trainings { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
 
         public string Name { get; set; }
 
-        public int Id
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int Id { get; set; }
     }
 }

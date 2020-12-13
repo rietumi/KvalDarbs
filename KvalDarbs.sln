@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KvalDarbsCore", "KvalDarbsC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicCore", "LogicCore\LogicCore.csproj", "{DDFF6202-0218-4EC1-A525-97967CBD53A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KvalDarbCoreTest", "KvalDarbCoreTest\KvalDarbCoreTest.csproj", "{E5884E0D-47F3-46B4-8F0C-E6D575B33F7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KvalDarbCoreTest", "KvalDarbCoreTest\KvalDarbCoreTest.csproj", "{E5884E0D-47F3-46B4-8F0C-E6D575B33F7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

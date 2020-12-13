@@ -16,6 +16,7 @@ namespace KvalDarbsCore.Data
         {
         }
 
+        // Simple entity tables
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Error> Errors { get; set; }
@@ -28,6 +29,10 @@ namespace KvalDarbsCore.Data
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamTraining> TeamTrainings { get; set; }
         public DbSet<Training> Trainings { get; set; }
+
+        // ManyToMany tables
+        public DbSet<UserTeam> UserTeams { get; set; }
+        public DbSet<TrainingTask> TrainingTasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -47,6 +52,10 @@ namespace KvalDarbsCore.Data
             builder.Entity<Team>();
             builder.Entity<TeamTraining>();
             builder.Entity<Training>();
+
+            // ManyToMany tables
+            builder.Entity<UserTeam>().HasKey(ut => new { ut.UserId, ut.TeamId });
+            builder.Entity<TrainingTask>().HasKey(tt => new { tt.TrainingId, tt.TaskId });
         }
     }
 }

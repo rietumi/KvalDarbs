@@ -30,10 +30,12 @@ namespace KvalDarbsCore
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddErrorDescriber<LocalizedErrorDescriber>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddMvc();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -60,7 +62,7 @@ namespace KvalDarbsCore
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
 
                 options.LoginPath = "/Identity/Account/Login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
@@ -71,7 +73,7 @@ namespace KvalDarbsCore
 
             services.AddSession(options => 
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(300);
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });

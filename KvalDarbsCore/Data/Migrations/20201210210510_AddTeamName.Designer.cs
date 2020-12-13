@@ -4,14 +4,16 @@ using KvalDarbsCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KvalDarbsCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201210210510_AddTeamName")]
+    partial class AddTeamName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,6 +75,9 @@ namespace KvalDarbsCore.Data.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -89,6 +94,8 @@ namespace KvalDarbsCore.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -294,7 +301,12 @@ namespace KvalDarbsCore.Data.Migrations
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TrainingId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TrainingId");
 
                     b.ToTable("Tasks");
                 });
@@ -310,11 +322,9 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -367,36 +377,6 @@ namespace KvalDarbsCore.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Trainings");
-                });
-
-            modelBuilder.Entity("LogicCore.TrainingTask", b =>
-                {
-                    b.Property<int>("TrainingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TrainingId", "TaskId");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("TrainingTasks");
-                });
-
-            modelBuilder.Entity("LogicCore.UserTeam", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "TeamId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("UserTeams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -534,6 +514,13 @@ namespace KvalDarbsCore.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("LogicCore.ApplicationUser", b =>
+                {
+                    b.HasOne("LogicCore.Team", null)
+                        .WithMany("Members")
+                        .HasForeignKey("TeamId");
+                });
+
             modelBuilder.Entity("LogicCore.Comment", b =>
                 {
                     b.HasOne("LogicCore.ApplicationUser", "Author")
@@ -574,6 +561,13 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasForeignKey("CompetitionId");
                 });
 
+            modelBuilder.Entity("LogicCore.Task", b =>
+                {
+                    b.HasOne("LogicCore.Training", null)
+                        .WithMany("Tasks")
+                        .HasForeignKey("TrainingId");
+                });
+
             modelBuilder.Entity("LogicCore.Team", b =>
                 {
                     b.HasOne("LogicCore.ApplicationUser", "Coach")
@@ -597,36 +591,6 @@ namespace KvalDarbsCore.Data.Migrations
                     b.HasOne("LogicCore.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("LogicCore.TrainingTask", b =>
-                {
-                    b.HasOne("LogicCore.Task", "Task")
-                        .WithMany("Trainings")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LogicCore.Training", "Training")
-                        .WithMany("Tasks")
-                        .HasForeignKey("TrainingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LogicCore.UserTeam", b =>
-                {
-                    b.HasOne("LogicCore.Team", "Team")
-                        .WithMany("Members")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LogicCore.ApplicationUser", "User")
-                        .WithMany("UserTeams")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

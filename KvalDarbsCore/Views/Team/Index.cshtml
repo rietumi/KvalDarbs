@@ -1,32 +1,60 @@
 ﻿@using LogicCore;
 
-@model Team
+@model List<Team>
 
 @{ 
+    ViewData["Title"] = Text.Team;
     this.Layout = "_Layout";
 }
 
 <div class="container">
-    @if (this.Model == null)
+    @if (this.Model == null || this.Model.Count == 0)
     {
         <div class="container">
             <h1>
-                @Text.NoTeam 
+                @Text.NoTeam
             </h1>
-        </div>
-        <div>
-            @Html.ActionLink(Text.CreateNewTeam, "Create", "Team", null, new { @class = "btn btn-primary" })
         </div>
     }
     else
     {
-        <div id="teamMembers" class="container">
-            @foreach (var member in this.Model.Members)
-            {
-                <div class="member">
-                    @(member.FullName)
-                </div>
-            }
-        </div>
+        @foreach (var team in this.Model)
+        {
+            <div class="card">
+                <div class="card-header">@team.Name</div>
+                <div class="card-body container">
+                    <div class="row">
+                        <div class="col-6">
+                            @string.Format(Text.CoachIs, team.Coach.FullName)
+                        </div>
+                        <div class="col-3">
+
+                        </div>
+                        <div class="col-3">
+                            @Html.ActionLink(Text.Open, "Open", "Team", new { id = team.Id }, new { @class = "btn btn-primary float-right" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            @Text.Team:
+                        </div>
+                    </div>
+                    @foreach (var member in team.Members)
+                    {
+                        // Neliekam treneri iekšā komandas sarakstā
+                        if (member.UserId == team.Coach.Id) continue;
+                        <div class="row">
+                            <div class="offset-1 col-11">
+                                @member.User.FullName
+                            </div>
+                        </div>
+                    }
+                </div>  
+            </div>
+        }
     }
+
+    <div>
+        @Html.ActionLink(Text.CreateNewTeam, "Create", "Team", null, new { @class = "btn btn-primary mt-3 float-right" })
+    </div>
 </div>
