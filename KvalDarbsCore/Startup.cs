@@ -34,6 +34,10 @@ namespace KvalDarbsCore
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddErrorDescriber<LocalizedErrorDescriber>();
             services.AddControllersWithViews();
+            services.AddControllers(options =>
+            {
+                options.ModelBinderProviders.Insert(0, new DataModelBinderProvider());
+            });
             services.AddRazorPages();
             services.AddMvc();
 

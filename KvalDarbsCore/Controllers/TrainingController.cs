@@ -57,10 +57,9 @@ namespace KvalDarbsCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Add(string training)
+        public JsonResult Add(TeamTrainingViewModel training)
         {
-            var train = JsonConvert.DeserializeObject<TeamTrainingViewModel>(training);
-            return new JsonResult(JsonConvert.SerializeObject(train));
+            return new JsonResult(JsonConvert.SerializeObject(training));
         }
     }
 }
