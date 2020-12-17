@@ -12,8 +12,9 @@
 <script src="~/js/Training.js"></script>
 
 <h2>@Text.Training</h2>
-@using (this.Html.BeginForm("Add", "Training", null, FormMethod.Post, true, null))
+@using (this.Html.BeginForm("Add", "Training", null, FormMethod.Post, true, new { id = "trainingForm"}))
 {
+    <input type="hidden" name="training" id="training" />
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -21,7 +22,7 @@
                     Name: <input data-bind="value: Name" />
                 </div>
                 <div class="form-group">
-                    Date: <input data-bind="value: Date" />
+                    Date: <input data-bind="value: Date, date: Date" />
                 </div>
             </div>
         </div>

@@ -30,17 +30,17 @@ namespace KvalDarbsCore.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add(int teamId)
+        public ActionResult Add(int id)
         {
-            if (!_context.IsCoach(teamId, _context.GetActiveUser(this.HttpContext)))
-                return RedirectToAction("Open", "Team", new { id = teamId });
+            if (!_context.IsCoach(id, _context.GetActiveUser(this.HttpContext)))
+                return RedirectToAction("Open", "Team", new { id = id });
 
-            var team = _context.Teams.Include(m => m.Members).ThenInclude(m => m.User).FirstOrDefault(m => m.Id == teamId);
+            var team = _context.Teams.Include(m => m.Members).ThenInclude(m => m.User).FirstOrDefault(m => m.Id == id);
 
             if (team == null)
                 return RedirectToAction("Index");
 
-            var viewModel = new TeamTrainingViewModel(teamId);
+            var viewModel = new TeamTrainingViewModel(id);
             viewModel.Trainings = new List<TrainingViewModel>() {
                 new TrainingViewModel() {
                     Tasks = new List<TaskViewModel>()
@@ -57,9 +57,11 @@ namespace KvalDarbsCore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Add(TeamTrainingViewModel training)
+        public ActionResult Add(TeamTrainingViewModel training)
         {
-            return new JsonResult(JsonConvert.SerializeObject(training));
+            return View(training);
+
+            return RedirectToAction("Open", "Team", new { id = training.Team });
         }
     }
 }

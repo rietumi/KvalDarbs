@@ -50,14 +50,8 @@ viewModel.RemoveTask = function (task, training) {
 };
 
 viewModel.Submit = function () {
-    $.ajax({
-        url: '/Training/Add',
-        type: 'POST',
-        data: { __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(), training: ko.mapping.toJSON(viewModel) },
-        success: function (status) {
-            alert(status);
-        }
-    });
+    $('#training').val(ko.mapping.toJSON(viewModel));
+    $('#trainingForm').submit();
 }
 
 $(function () {
