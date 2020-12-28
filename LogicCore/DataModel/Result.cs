@@ -3,21 +3,18 @@ using System.Collections.Generic;
 
 namespace LogicCore
 {
-    public class Result : IEntity, IValidation
+    public class Result : IEntity
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
+
+        public int? AthleteId { get; set; }
 
         public ApplicationUser Athlete { get; set; }
 
-        public Competition Competition { get; set; }
+        public int? CompetitionId { get; set; }
 
         public DateTime? Time { get; set; }
 
         public List<Comment> Comments { get; set; }
-
-        public bool Validate(ref List<Error> state)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KvalDarbsCore.Data;
 using LogicCore;
 using LogicCore.Util;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.EntityFrameworkCore;
 
@@ -61,17 +58,23 @@ namespace KvalDarbsCore.Controllers
             if (!this.ModelState.IsValid)
                 return View(team);
 
+            if (team.Id.HasValue)
+                return RedirectToAction("Index");
+
+            _context.Teams.Add(team);
+            _context.SaveChanges();
+
             var user = _context.GetActiveUser(this.HttpContext);
-            var userTeam = new UserTeam { TeamId = team.Id, UserId = user.Id, User = user, Team = team };
+            var userTeam = new UserTeam { TeamId = team.Id.Value, UserId = user.Id, User = user, Team = team };
 
             team.Coach = user;
 
             _context.UserTeams.Add(userTeam);
-            _context.Teams.Add(team);
+            _context.Teams.Update(team);
             _context.SaveChanges();
             this.RemoveTeamCacheForUsers(_context.Teams.Include(m => m.Members).FirstOrDefault(m => m.Id == team.Id).Members.Select(m => m.UserId));
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Open", new { id = team.Id });
         }
 
         [HttpGet]
@@ -80,7 +83,7 @@ namespace KvalDarbsCore.Controllers
             var team = _context.GetTeamById(id);
             var user = _context.GetActiveUser(this.HttpContext);
 
-            if (!team.BelongsToTeam(user))
+            if (team == null || !team.BelongsToTeam(user))
                 return RedirectToAction("Index");
 
             // Selects all users that aren't part of the team.
@@ -97,6 +100,7 @@ namespace KvalDarbsCore.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddMember(Team team)
         {
             if (!_context.IsCoach(team.Id, _context.GetActiveUser(this.HttpContext)))
@@ -106,7 +110,7 @@ namespace KvalDarbsCore.Controllers
 
             if (newMember != null)
             {
-                _context.UserTeams.Add(new UserTeam { TeamId = team.Id, User = newMember, UserId = newMember.Id });
+                _context.UserTeams.Add(new UserTeam { TeamId = team.Id.Value, User = newMember, UserId = newMember.Id });
                 _context.SaveChanges();
                 this.RemoveTeamCacheForUsers(_context.Teams.Include(m => m.Members).FirstOrDefault(m => m.Id == team.Id).Members.Select(m => m.UserId));
             }
@@ -121,7 +125,11 @@ namespace KvalDarbsCore.Controllers
         [HttpGet]
         public ActionResult DeleteMember(string userId, int teamId)
         {
-            if (!_context.IsCoach(teamId, _context.GetActiveUser(this.HttpContext)))
+            var currentUser = _context.GetActiveUser(this.HttpContext);
+            var isCoach = _context.IsCoach(teamId, currentUser);
+
+            // Coach can't delete himself from the team.
+            if (!isCoach || (isCoach && currentUser.Id == userId))
                 return RedirectToAction("Open", new { id = teamId });
 
             var deletable = _context.UserTeams.FirstOrDefault(m => m.TeamId == teamId && m.UserId == userId);
@@ -142,7 +150,7 @@ namespace KvalDarbsCore.Controllers
             if (!_context.IsCoach(teamId, _context.GetActiveUser(this.HttpContext)))
                 return RedirectToAction("Open", new { id = teamId });
 
-            var deletable = _context.Teams.FirstOrDefault(m => m.Id == teamId);
+            var deletable = _context.Teams.Include(m => m.Members).Include(m => m.TeamTrainings).ThenInclude(m => m.Trainings).ThenInclude(m => m.Tasks).FirstOrDefault(m => m.Id == teamId);
 
             if (deletable != null)
             {
@@ -158,7 +166,7 @@ namespace KvalDarbsCore.Controllers
         /// Maintains that users have updated team statuses.
         /// </summary>
         /// <param name="userIds">User ids.</param>
-        private void RemoveTeamCacheForUsers(IEnumerable<string> userIds)
+        public void RemoveTeamCacheForUsers(IEnumerable<string> userIds)
         {
             foreach (var userId in userIds)
                 _cache.Remove(string.Format(_teamsKey, userId));

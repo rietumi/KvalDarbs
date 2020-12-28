@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace LogicCore
 {
-    public class Goal : IEntity, IValidation
+    public class Goal : IEntity
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
+
+        public int? TeamId { get; set; }
 
         public string Description { get; set; }
 
@@ -14,10 +16,5 @@ namespace LogicCore
         public int Status { get; set; }
 
         public PriorityType Priority { get; set; }
-
-        public bool Validate(ref List<Error> state)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

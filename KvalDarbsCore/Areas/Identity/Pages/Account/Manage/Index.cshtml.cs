@@ -36,14 +36,17 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [RequiredLocalized]
+            [StringLength(50)]
             [Display(Name = "Username", ResourceType = typeof(Text))]
             public string Username { get; set; }
 
             [RequiredLocalized]
+            [StringLength(50)]
             [Display(Name = "Name", ResourceType = typeof(Text))]
             public string Name { get; set; }
 
             [RequiredLocalized]
+            [StringLength(50)]
             [Display(Name = "Surname", ResourceType = typeof(Text))]
             public string Surname { get; set; }
 

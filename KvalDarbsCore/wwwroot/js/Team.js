@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $("#addMember").click(function () {
+    $(".addMemberToggler").click(function () {
         $(".addMember").toggle();
     });
 });

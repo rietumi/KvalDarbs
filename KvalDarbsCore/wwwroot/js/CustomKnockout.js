@@ -20,3 +20,23 @@
             $(element).val(formattedDate);
     }
 };
+
+ko.bindingHandlers.uniqueId = {
+    init: function (element, valueAccessor) {
+        var value = valueAccessor();
+        value.id = value.id || ko.bindingHandlers.uniqueId.prefix + (++ko.bindingHandlers.uniqueId.counter);
+
+        element.id = value.id;
+    },
+    counter: 0,
+    prefix: "ko_unique"
+}
+
+ko.bindingHandlers.uniqueFor = {
+    init: function (element, valueAccessor) {
+        var value = valueAccessor();
+        value.id = value.id || ko.bindingHandlers.uniqueId.prefix + (++ko.bindingHandlers.uniqueId.counter);
+
+        element.setAttribute("for", value.id);
+    }
+};

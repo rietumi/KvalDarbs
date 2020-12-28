@@ -144,17 +144,35 @@
   <data name="CreateNewTeam" xml:space="preserve">
     <value>Izveidot jaunu komandu</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datums</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Dzēst</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Apraksts</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Rediģēt</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-pasts</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>Uzdevums</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Aizmirsi paroli?</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Sveiks, {0}!</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Vēsture</value>
+  </data>
+  <data name="IndividualNoTrainings" xml:space="preserve">
+    <value>Lietotājam nav ieplānots neviens treniņš</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Ieiet</value>
@@ -169,7 +187,7 @@
     <value>Jaunais komandas biedrs: </value>
   </data>
   <data name="NoTeam" xml:space="preserve">
-    <value>Nav komanda</value>
+    <value>Nav komandu</value>
   </data>
   <data name="NoTrainings" xml:space="preserve">
     <value>Komandai nav ieplānoti treniņi</value>
@@ -198,6 +216,9 @@
   <data name="Remove" xml:space="preserve">
     <value>Noņemt</value>
   </data>
+  <data name="Repetition" xml:space="preserve">
+    <value>Atkārtojumi</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Sākums</value>
   </data>
@@ -210,8 +231,17 @@
   <data name="Team" xml:space="preserve">
     <value>Komanda</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Laiks</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Nosaukums</value>
+  </data>
   <data name="Training" xml:space="preserve">
     <value>Treniņš</value>
+  </data>
+  <data name="TrainingNameTemplate" xml:space="preserve">
+    <value>{0} ({1})</value>
   </data>
   <data name="Trainings" xml:space="preserve">
     <value>Treniņi</value>

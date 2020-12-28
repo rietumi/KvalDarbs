@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AtLeastOneOfTwoRequired" xml:space="preserve">
+    <value>Vismaz viens no laukiem '{0}', '{1}' ir jāaizpilda</value>
+  </data>
+  <data name="AtLeastOneTask" xml:space="preserve">
+    <value>Vismaz viens uzdevums ir nepieciešams priekš {0}</value>
+  </data>
+  <data name="AtLeastOneTraining" xml:space="preserve">
+    <value>Vismaz viens treniņš ir nepieciešams</value>
+  </data>
   <data name="ConcurrencyFailure" xml:space="preserve">
     <value>Vienlaicīguma kļūda, objekts ir mainīts</value>
   </data>
   <data name="DefaultError" xml:space="preserve">
     <value>Notika nezināma kļūda</value>
+  </data>
+  <data name="DoesntExist" xml:space="preserve">
+    <value>Izvēlētais {0} neeksistē izvelnē</value>
   </data>
   <data name="DuplicateEmail" xml:space="preserve">
     <value>E-pasts '{0}' jau tiek izmantots</value>
@@ -172,7 +184,7 @@
     <value>Atgūšanas koda saņemšanā notika kļūda</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>Nav aizpildīts lauks '{0}'</value>
+    <value>Lauks '{0}' ir jāaizpilda obligāti</value>
   </data>
   <data name="UserAlreadyHasPassword" xml:space="preserve">
     <value>Lietotājam jau ir parole</value>

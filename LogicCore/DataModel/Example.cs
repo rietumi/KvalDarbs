@@ -2,7 +2,9 @@
 {
     public class Example : IEntity
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
+
+        public int? ExerciseId { get; set; }
 
         public byte[] Data { get; set; }
 

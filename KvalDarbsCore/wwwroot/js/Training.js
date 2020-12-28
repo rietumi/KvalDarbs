@@ -25,7 +25,9 @@ viewModel.RemoveTraining = function (training) {
 viewModel.CloneTraining = function (training) {
     var tasks = [];
     training.Tasks().forEach(function (t) {
-        tasks.push(new TaskViewModel(ko.toJS(t)));
+        task = new TaskViewModel(ko.toJS(t));
+        task.TaskId = "";
+        tasks.push(task);
     })
 
     viewModel.Trainings.push({
@@ -50,8 +52,32 @@ viewModel.RemoveTask = function (task, training) {
 };
 
 viewModel.Submit = function () {
-    $('#training').val(ko.mapping.toJSON(viewModel));
+    $('#teamTraining').val(ko.mapping.toJSON(viewModel));
     $('#trainingForm').submit();
+}
+
+viewModel.Exercise = {
+    Name: ko.observable(""),
+    Description: ko.observable("")
+}
+
+viewModel.AddExercise = function () {
+    $.ajax({
+        method: "POST",
+        url: exerciseUrl,
+        data: { __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),Name: viewModel.Exercise.Name, Description: viewModel.Exercise.Description },
+        dataType: "json",
+        success: function (data) {
+            viewModel.Exercises.push({
+                Key: data.Key,
+                Value: data.Value
+            });
+        },
+        error: function (request, status, error) {
+            alert(ko.toJSON(viewModel.Exercise));
+        }
+
+    });
 }
 
 $(function () {

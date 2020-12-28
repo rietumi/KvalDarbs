@@ -11,13 +11,13 @@
     {
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-        <div class="card">
+        <div class="form-group">
             @Html.LabelFor(m => m.Name)
-            @Html.EditorFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "w-100" })
         </div>
-        <div class="card">
+        <div class="form-group">
             @Html.LabelFor(m => m.Description)
-            @Html.TextAreaFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { @class = "w-100"})
         </div>
         <input type="submit" class="btn btn-primary" value="@Text.Submit"/>
     }

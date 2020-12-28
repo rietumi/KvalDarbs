@@ -1,0 +1,35 @@
+﻿@using LogicCore
+
+@model List<TeamTraining>
+@{
+    ViewData["Title"] = Text.Trainings;
+    Layout = "_Layout";
+}
+
+<div class="container">
+    @if (this.Model == null || this.Model.Count == 0)
+    {
+        <div class="container">
+            <h1>
+                @Text.IndividualNoTrainings
+            </h1>
+        </div>
+    }
+    else
+    {
+        @foreach (var teamTraining in this.Model)
+        {
+            <div class="card">
+                <div class="card-header">@string.Format(Text.TrainingNameTemplate, teamTraining.Name, teamTraining.Date.Value.ToShortDateString())</div>
+                <div class="card-body container">
+                    <div class="row">
+                        <div class="col-3">
+                            @Html.ActionLink(Text.Open, "Open", "Training", new { id = teamTraining.Id }, new { @class = "btn btn-primary float-right" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+

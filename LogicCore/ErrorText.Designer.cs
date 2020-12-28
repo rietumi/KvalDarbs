@@ -61,6 +61,33 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vismaz viens no laukiem &apos;{0}&apos;, &apos;{1}&apos; ir jāaizpilda.
+        /// </summary>
+        public static string AtLeastOneOfTwoRequired {
+            get {
+                return ResourceManager.GetString("AtLeastOneOfTwoRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vismaz viens uzdevums ir nepieciešams priekš {0}.
+        /// </summary>
+        public static string AtLeastOneTask {
+            get {
+                return ResourceManager.GetString("AtLeastOneTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vismaz viens treniņš ir nepieciešams.
+        /// </summary>
+        public static string AtLeastOneTraining {
+            get {
+                return ResourceManager.GetString("AtLeastOneTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vienlaicīguma kļūda, objekts ir mainīts.
         /// </summary>
         public static string ConcurrencyFailure {
@@ -75,6 +102,15 @@ namespace LogicCore {
         public static string DefaultError {
             get {
                 return ResourceManager.GetString("DefaultError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Izvēlētais {0} neeksistē izvelnē.
+        /// </summary>
+        public static string DoesntExist {
+            get {
+                return ResourceManager.GetString("DoesntExist", resourceCulture);
             }
         }
         
@@ -223,7 +259,7 @@ namespace LogicCore {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nav aizpildīts lauks &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Lauks &apos;{0}&apos; ir jāaizpilda obligāti.
         /// </summary>
         public static string Required {
             get {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace LogicCore
 {
-    public class Competition : IEntity, IValidation
+    public class Competition : IEntity
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string Name { get; set; }
 
@@ -17,9 +17,6 @@ namespace LogicCore
 
         public string Location { get; set; }
 
-        public bool Validate(ref List<Error> state)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Result> Results { get; set; } 
     }
 }

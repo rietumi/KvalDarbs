@@ -8,22 +8,41 @@
 }
 <script>
     var initial = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+    var exerciseUrl = "@Html.Raw(Url.Action("AddExercise", "Training"))";
 </script>
 <script src="~/js/Training.js"></script>
 
 <h2>@Text.Training</h2>
-@using (this.Html.BeginForm("Add", "Training", null, FormMethod.Post, true, new { id = "trainingForm"}))
+@using (this.Html.BeginForm("Save", "Training", null, FormMethod.Post, true, new { id = "trainingForm"}))
 {
-    <input type="hidden" name="training" id="training" />
+    <input type="hidden" name="teamTraining" id="teamTraining" />
     <div class="container">
         <div class="row">
             <div class="col-12">
+                @this.Html.ValidationSummary()
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-xl-6">
                 <div class="form-group">
-                    Name: <input data-bind="value: Name" />
+                    @this.Html.LabelFor(m => m.Name)
+                    <input data-bind="value: Name" id="Name"/>
                 </div>
                 <div class="form-group">
-                    Date: <input data-bind="value: Date, date: Date" />
+                    @this.Html.LabelFor(m => m.Date)
+                    <input data-bind="value: Date, date: Date" id="Date"/>
                 </div>
+            </div>
+            <div class="col-12 col-xl-6">
+                <div class="form-group">
+                    <label for="ExerciseName">@Text.Title</label>
+                    <input data-bind="value: Exercise.Name" id="ExerciseName"/>
+                </div>
+                <div class="form-group">
+                    <label for="ExerciseDescription">@Text.Description</label>
+                    <input data-bind="value: Exercise.Description" id="ExerciseDescription"/>
+                </div>
+                <button type="button" data-bind="click: $root.AddExercise" class="btn btn-primary btn-sm float-right">@Text.Add</button>
             </div>
         </div>
         <div data-bind="foreach: Trainings" class="row">
@@ -38,27 +57,28 @@
 
                         <button type="button" data-bind="click: $root.RemoveTraining" class="btn btn-danger btn-sm float-right">@Text.Remove</button>
                     </div>
+                    <ul class="list-group list-group-flush" data-bind="foreach: Tasks">
+                        <li class="list-group-item">
+                            <label data-bind="uniqueFor: Exercise">@Text.Exercise</label> 
+                            <select data-bind="
+                                        options: $root.Exercises,
+                                        optionsText: 'Value',
+                                        optionsValue: 'Key',
+                                        value: Exercise,
+                                        uniqueId: Exercise" class="m-1 w-50"></select>
+                            <div class="form-group">
+                                <label data-bind="uniqueFor: Repetition">@Text.Repetition</label>
+                                <input data-bind="value: Repetition, uniqueId: Repetition" class="w-50" />
+                            </div>
+                            <div class="form-group">
+                                <label data-bind="uniqueFor: Time">@Text.Time</label>
+                                <input data-bind="value: Time, uniqueId: Time" class="w-50" />
+                                <button type="button" data-bind="click: function() { $root.RemoveTask($data, $parent)}" class="btn btn-danger btn-sm float-right">@Text.Remove</button>
+                            </div>
+                        </li>
+                    </ul>
+
                     <div class="card-body">
-                        <div class="container">
-                            <dl data-bind="foreach: Tasks">
-                                <dt>
-                                    Exercise: <select data-bind="
-                                            options: $root.Exercise,
-                                            optionsText: 'Value',
-                                            optionsValue: 'Key',
-                                            value: Exercise"></select>
-                                </dt>
-                                <dd>
-                                    <div class="form-group">
-                                        Repetition: <input data-bind="value: Repetition" class="w-50" />
-                                    </div>
-                                    <div class="form-group">
-                                        Time: <input data-bind="value: Time" class="w-50" />
-                                        <button type="button" data-bind="click: function() { $root.RemoveTask($data, $parent)}" class="btn btn-danger btn-sm float-right">@Text.Remove</button>
-                                    </div>
-                                </dd>
-                            </dl>
-                        </div>
                         <div>
                             <button type="button" data-bind="click: $root.AddTask" class="btn btn-primary btn-sm float-left">@Text.Add</button>
                             <button type="button" data-bind="click: $root.CloneTraining" class="btn btn-primary btn-sm float-right">@Text.Copy</button>

@@ -142,6 +142,15 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datums.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dzēst.
         /// </summary>
         public static string Delete {
@@ -151,11 +160,38 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apraksts.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rediģēt.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-pasts.
         /// </summary>
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uzdevums.
+        /// </summary>
+        public static string Exercise {
+            get {
+                return ResourceManager.GetString("Exercise", resourceCulture);
             }
         }
         
@@ -174,6 +210,24 @@ namespace LogicCore {
         public static string Hello {
             get {
                 return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vēsture.
+        /// </summary>
+        public static string History {
+            get {
+                return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lietotājam nav ieplānots neviens treniņš.
+        /// </summary>
+        public static string IndividualNoTrainings {
+            get {
+                return ResourceManager.GetString("IndividualNoTrainings", resourceCulture);
             }
         }
         
@@ -214,7 +268,7 @@ namespace LogicCore {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nav komanda.
+        ///   Looks up a localized string similar to Nav komandu.
         /// </summary>
         public static string NoTeam {
             get {
@@ -304,6 +358,15 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Atkārtojumi.
+        /// </summary>
+        public static string Repetition {
+            get {
+                return ResourceManager.GetString("Repetition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sākums.
         /// </summary>
         public static string Start {
@@ -340,11 +403,38 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Laiks.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nosaukums.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Treniņš.
         /// </summary>
         public static string Training {
             get {
                 return ResourceManager.GetString("Training", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1}).
+        /// </summary>
+        public static string TrainingNameTemplate {
+            get {
+                return ResourceManager.GetString("TrainingNameTemplate", resourceCulture);
             }
         }
         

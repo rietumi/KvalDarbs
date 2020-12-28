@@ -27,7 +27,7 @@ namespace KvalDarbsCore.Data
         /// <returns>Team.</returns>
         public static Team GetTeamById(this ApplicationDbContext context, int teamId)
         {
-            var team = context.Teams.Include(m => m.Members).ThenInclude(m => m.User).FirstOrDefault(m => m.Id == teamId);
+            var team = context.Teams.Include(m => m.Members).ThenInclude(m => m.User).Include(m => m.TeamTrainings).FirstOrDefault(m => m.Id == teamId);
             
             return team;
         }
@@ -39,9 +39,9 @@ namespace KvalDarbsCore.Data
         /// <param name="teamId">Teams ID.</param>
         /// <param name="user">Current user.</param>
         /// <returns>True if the user is the coach of the team, otherwise false.</returns>
-        public static bool IsCoach(this ApplicationDbContext context, int teamId, ApplicationUser user)
+        public static bool IsCoach(this ApplicationDbContext context, int? teamId, ApplicationUser user)
         {
-            if (user == null)
+            if (user == null || !teamId.HasValue)
                 return false;
 
             return context.Teams.FirstOrDefault(t => t.Id == teamId && t.Coach.Id == user.Id) != null;

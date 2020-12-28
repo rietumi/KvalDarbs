@@ -17,86 +17,98 @@
         @if (isCoach)
         {
             <div class="col-2">
-                @this.Html.ActionLink("Dzēst", "DeleteTeam", "Team", new { teamId = this.Model.Id }, new { @class = "btn btn-primary float-right" })
+                @this.Html.ActionLink(Text.Delete, "DeleteTeam", "Team", new { teamId = this.Model.Id }, new { @class = "btn btn-primary float-right" })
             </div>
         }
     </div>
+    @this.Html.ValidationSummary()
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-lg-6">
             <div class="card">
                 <div class="card-header">@Text.Team</div>
-                <div class="card-body container">
-                    @this.Html.ValidationSummary()
+                <ul class="list-group list-group-flush">
                     @foreach (var member in this.Model.Members)
                     {
-                        <div class="row">
-                            <div class="col-11">
-                                @member.User.FullName
-                            </div>
-                            @if (isCoach)
+                        <li class="list-group-item">
+                            @member.User.FullName
+
+                            @if (isCoach && member.UserId != this.Model.Coach.Id)
                             {
-                                <div class="col-1">
-                                    @this.Html.ActionLink("X", "DeleteMember", "Team", new { member.UserId, member.TeamId })
+                                @this.Html.ActionLink(Text.Delete, "DeleteMember", "Team", new { member.UserId, member.TeamId }, new { @class = "btn btn-danger btn-sm float-right ml-1" })
+                            }
+                        </li>
+                    }
+                </ul>
+
+                @if (isCoach)
+                {
+                    <div class="card-body">
+                        <div class="addMember">
+                            <button type="button" class="btn btn-primary float-right addMemberToggler">@Text.AddMember</button>
+                        </div>
+                        <div class="addMember" style="display:none">
+                            @using (this.Html.BeginForm("AddMember", "Team", null, FormMethod.Post, true, null))
+                            {
+                                @this.Html.HiddenFor(m => m.Id)
+                                <div class="form-group">
+                                    @this.Html.LabelFor(m => m.NewMemberId)
+                                    <button type="button" class="btn btn-danger btn-sm float-right addMemberToggler">X</button>
+                                    @this.Html.DropDownListFor(m => m.NewMemberId, this.Model.PossibleMembers, new { @class = "w-75" })
                                 </div>
+                                <input type="submit" class="btn btn-primary" value="@Text.Add" />
                             }
                         </div>
-                    }
-
-                    @if (isCoach)
-                    {
-                        <div class="row">
-                            <div class="col-12 addMember">
-                                <button type="button" class="btn btn-primary float-right" id="addMember">@Text.AddMember</button>
-                            </div>
-                            <div class="col-12 addMember" style="display:none">
-                                @using (this.Html.BeginForm("AddMember", "Team", null, FormMethod.Post, true, null))
-                                {
-                                    @this.Html.HiddenFor(m => m.Id)
-                                    <div class="form-group">
-                                        @this.Html.LabelFor(m => m.NewMemberId)
-                                        @this.Html.DropDownListFor(m => m.NewMemberId, this.Model.PossibleMembers, new { @class = "w-75" })
-                                    </div>
-                                    <input type="submit" class="btn btn-primary" value="@Text.Add" />
-                                }
-                            </div>
-                        </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-12 col-lg-6">
             <div class="card">
                 <div class="card-header">@Text.Trainings</div>
-                <div class="card-body container">
-                    @if (this.Model.TeamTrainings == null || this.Model.TeamTrainings.Count == 0)
-                    {
-                        <div class="row">
-                            <div class="col-12">
-                                @Text.NoTrainings
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        foreach (var training in this.Model.TeamTrainings.Where(m => m.Date <= DateTime.Today).OrderBy(m => m.Date))
+                @if (this.Model.TeamTrainings == null || this.Model.TeamTrainings.Count == 0)
+                {
+                    <div class="card-body">
+                        @Text.NoTrainings
+                    </div>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var training in this.Model.TeamTrainings.Where(m => m.Date.HasValue && m.Date.Value >= DateTime.Today).OrderBy(m => m.Date.Value))
                         {
-                            <div class="row">
-                                <div class="col-12">
-                                    @training.Date.ToShortDateString()
-                                </div>
-                            </div>
+                            <li class="list-group-item">
+                                @string.Format(Text.TrainingNameTemplate, training.Name, training.Date.Value.ToShortDateString())
+                                @if (isCoach)
+                                {
+                                    @this.Html.ActionLink(Text.Delete, "Delete", "Training", new { id = training.Id }, new { @class = "btn btn-danger btn-sm float-right ml-1" })
+                                    @this.Html.ActionLink(Text.Edit, "Edit", "Training", new { id = training.Id }, new { @class = "btn btn-primary btn-sm float-right ml-1" })
+                                }
+                                @this.Html.ActionLink(Text.Open, "Open", "Training", new { id = training.Id }, new { @class = "btn btn-primary btn-sm float-right" })
+                            </li>
                         }
-                    }
-
+                    </ul>
+                    <ul class="list-group list-group-flush" style="display:none" id="history">
+                        @foreach (var training in this.Model.TeamTrainings.Where(m => m.Date.HasValue && m.Date.Value < DateTime.Today).OrderByDescending(m => m.Date.Value))
+                        {
+                            <li class="list-group-item">
+                                @string.Format(Text.TrainingNameTemplate, training.Name, training.Date.Value.ToShortDateString())
+                                @if (isCoach)
+                                {
+                                    @this.Html.ActionLink(Text.Delete, "Delete", "Training", new { id = training.Id }, new { @class = "btn btn-danger btn-sm float-right ml-1" })
+                                    @this.Html.ActionLink(Text.Edit, "Edit", "Training", new { id = training.Id }, new { @class = "btn btn-primary btn-sm float-right ml-1" })
+                                }
+                                @this.Html.ActionLink(Text.Open, "Open", "Training", new { id = training.Id }, new { @class = "btn btn-primary btn-sm float-right" })
+                            </li>
+                        }
+                    </ul>
+                }
+                <div class="card-body">
                     @if (isCoach)
                     {
-                        <div class="row">
-                            <div class="col-12">
-                                @this.Html.ActionLink(Text.AddTraining, "Add", "Training", new { id = this.Model.Id }, new { @class = "btn btn-primary float-right" } )
-                            </div>
-                        </div>
+                        @this.Html.ActionLink(Text.AddTraining, "Add", "Training", new { id = this.Model.Id }, new { @class = "btn btn-primary float-right  ml-1" })
                     }
+                    <button type="button" onclick="(function () { $('#history').toggle(); })();" class="btn btn-primary float-right">@Text.History</button>
                 </div>
             </div>
         </div>

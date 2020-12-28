@@ -3,17 +3,22 @@ using System.Collections.Generic;
 
 namespace LogicCore
 {
-    public class Training : IEntity, IValidation
+    public class Training : IEntity
     {
-        public int Id { get; set; }
+        public Training()
+        {
+            this.Tasks = new List<Task>();
+            this.User = new ApplicationUser();
+        }
 
-        public List<TrainingTask> Tasks { get; set; }
+        public int? Id { get; set; }
+
+        public int? TeamTrainingId { get; set; }
+
+        public string UserId { get; set; }
+
+        public List<Task> Tasks { get; set; }
 
         public ApplicationUser User { get; set; }
-
-        public bool Validate(ref List<Error> state)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

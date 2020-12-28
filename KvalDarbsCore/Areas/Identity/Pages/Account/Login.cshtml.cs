@@ -46,6 +46,7 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account
         public class InputModel
         {
             [RequiredLocalized]
+            [StringLength(50)]
             [EmailAddress]
             [Display(Name = "Email", ResourceType = typeof(Text))]
             public string Email { get; set; }

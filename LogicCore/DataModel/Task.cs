@@ -2,24 +2,26 @@
 
 namespace LogicCore
 {
-    public class Task : IEntity, IValidation
+    public class Task : IEntity
     {
+        public Task()
+        {
+            this.Comments = new List<Comment>();
+            this.Exercise = new Exercise();
+        }
 
         public string Repetition { get; set; }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string Time { get; set; }
 
         public List<Comment> Comments { get; set; }
 
-        public List<TrainingTask> Trainings { get; set; }
+        public int? TrainingId { get; set; }
+
+        public int? ExerciseId { get; set; }
 
         public Exercise Exercise { get; set; }
-
-        public bool Validate(ref List<Error> state)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
