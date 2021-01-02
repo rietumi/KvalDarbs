@@ -38,7 +38,7 @@ namespace KvalDarbsCore.Data
             builder.Entity<ApplicationUser>()
                 .ToTable("AspNetUsers");
             builder.Entity<Comment>();
-            builder.Entity<Competition>();
+            builder.Entity<Competition>().Property(m => m.Distance).HasColumnType("decimal(18,2)");
             builder.Entity<Example>();
             builder.Entity<Exercise>();
             builder.Entity<Goal>();

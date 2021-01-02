@@ -70,11 +70,38 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pievienot vingrinājumu.
+        /// </summary>
+        public static string AddExercise {
+            get {
+                return ResourceManager.GetString("AddExercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pievienot jaunu komandas biedru.
         /// </summary>
         public static string AddMember {
             get {
                 return ResourceManager.GetString("AddMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pievienot rezultātu.
+        /// </summary>
+        public static string AddResult {
+            get {
+                return ResourceManager.GetString("AddResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pievienot uzdevumu.
+        /// </summary>
+        public static string AddTask {
+            get {
+                return ResourceManager.GetString("AddTask", resourceCulture);
             }
         }
         
@@ -97,11 +124,56 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Atpakaļ.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uz sarakstu.
+        /// </summary>
+        public static string BackToList {
+            get {
+                return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uz komandu.
+        /// </summary>
+        public static string BackToTeam {
+            get {
+                return ResourceManager.GetString("BackToTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notīrīt.
+        /// </summary>
+        public static string Clean {
+            get {
+                return ResourceManager.GetString("Clean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Treneris: {0}.
         /// </summary>
         public static string CoachIs {
             get {
                 return ResourceManager.GetString("CoachIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sacensības.
+        /// </summary>
+        public static string Competition {
+            get {
+                return ResourceManager.GetString("Competition", resourceCulture);
             }
         }
         
@@ -120,6 +192,15 @@ namespace LogicCore {
         public static string Copy {
             get {
                 return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Izveidot.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
             }
         }
         
@@ -169,6 +250,24 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detaļas.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance (km).
+        /// </summary>
+        public static string Distance {
+            get {
+                return ResourceManager.GetString("Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rediģēt.
         /// </summary>
         public static string Edit {
@@ -187,11 +286,20 @@ namespace LogicCore {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uzdevums.
+        ///   Looks up a localized string similar to Vingrinājums.
         /// </summary>
         public static string Exercise {
             get {
                 return ResourceManager.GetString("Exercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vingrinājumi.
+        /// </summary>
+        public static string Exercises {
+            get {
+                return ResourceManager.GetString("Exercises", resourceCulture);
             }
         }
         
@@ -232,6 +340,15 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vieta.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ieiet.
         /// </summary>
         public static string Login {
@@ -264,6 +381,15 @@ namespace LogicCore {
         public static string NewMember {
             get {
                 return ResourceManager.GetString("NewMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nav vēsturisko treniņu.
+        /// </summary>
+        public static string NoHistory {
+            get {
+                return ResourceManager.GetString("NoHistory", resourceCulture);
             }
         }
         
@@ -358,11 +484,56 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Noņemt uzdevumu.
+        /// </summary>
+        public static string RemoveTask {
+            get {
+                return ResourceManager.GetString("RemoveTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Atkārtojumi.
         /// </summary>
         public static string Repetition {
             get {
                 return ResourceManager.GetString("Repetition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rezultāts.
+        /// </summary>
+        public static string Result {
+            get {
+                return ResourceManager.GetString("Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rezultāti.
+        /// </summary>
+        public static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saglabāt.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meklēt.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         
@@ -444,6 +615,15 @@ namespace LogicCore {
         public static string Trainings {
             get {
                 return ResourceManager.GetString("Trainings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tips.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

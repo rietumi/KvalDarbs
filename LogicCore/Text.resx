@@ -120,8 +120,17 @@
   <data name="Add" xml:space="preserve">
     <value>Pievienot</value>
   </data>
+  <data name="AddExercise" xml:space="preserve">
+    <value>Pievienot vingrinājumu</value>
+  </data>
   <data name="AddMember" xml:space="preserve">
     <value>Pievienot jaunu komandas biedru</value>
+  </data>
+  <data name="AddResult" xml:space="preserve">
+    <value>Pievienot rezultātu</value>
+  </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>Pievienot uzdevumu</value>
   </data>
   <data name="AddTraining" xml:space="preserve">
     <value>Pievienot treniņu</value>
@@ -129,14 +138,32 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>Sporta komanda</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Atpakaļ</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Uz sarakstu</value>
+  </data>
+  <data name="BackToTeam" xml:space="preserve">
+    <value>Uz komandu</value>
+  </data>
+  <data name="Clean" xml:space="preserve">
+    <value>Notīrīt</value>
+  </data>
   <data name="CoachIs" xml:space="preserve">
     <value>Treneris: {0}</value>
+  </data>
+  <data name="Competition" xml:space="preserve">
+    <value>Sacensības</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Atkārtota parole</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopēt</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Izveidot</value>
   </data>
   <data name="CreateNewAccount" xml:space="preserve">
     <value>Izveidot jaunu lietotāju</value>
@@ -153,6 +180,12 @@
   <data name="Description" xml:space="preserve">
     <value>Apraksts</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaļas</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance (km)</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Rediģēt</value>
   </data>
@@ -160,7 +193,10 @@
     <value>E-pasts</value>
   </data>
   <data name="Exercise" xml:space="preserve">
-    <value>Uzdevums</value>
+    <value>Vingrinājums</value>
+  </data>
+  <data name="Exercises" xml:space="preserve">
+    <value>Vingrinājumi</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Aizmirsi paroli?</value>
@@ -174,6 +210,9 @@
   <data name="IndividualNoTrainings" xml:space="preserve">
     <value>Lietotājam nav ieplānots neviens treniņš</value>
   </data>
+  <data name="Location" xml:space="preserve">
+    <value>Vieta</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Ieiet</value>
   </data>
@@ -185,6 +224,9 @@
   </data>
   <data name="NewMember" xml:space="preserve">
     <value>Jaunais komandas biedrs: </value>
+  </data>
+  <data name="NoHistory" xml:space="preserve">
+    <value>Nav vēsturisko treniņu</value>
   </data>
   <data name="NoTeam" xml:space="preserve">
     <value>Nav komandu</value>
@@ -216,8 +258,23 @@
   <data name="Remove" xml:space="preserve">
     <value>Noņemt</value>
   </data>
+  <data name="RemoveTask" xml:space="preserve">
+    <value>Noņemt uzdevumu</value>
+  </data>
   <data name="Repetition" xml:space="preserve">
     <value>Atkārtojumi</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Rezultāts</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Rezultāti</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Saglabāt</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Meklēt</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Sākums</value>
@@ -245,6 +302,9 @@
   </data>
   <data name="Trainings" xml:space="preserve">
     <value>Treniņi</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tips</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Lietotājvārds</value>

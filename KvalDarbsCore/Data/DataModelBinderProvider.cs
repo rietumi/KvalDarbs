@@ -1,4 +1,5 @@
 ﻿using KvalDarbsCore.Models;
+using LogicCore;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System;
@@ -17,6 +18,9 @@ namespace KvalDarbsCore.Data
 
             if (context.Metadata.ModelType == typeof(TeamTrainingViewModel))
                 return new BinderTypeModelBinder(typeof(DataModelBinder<TeamTrainingViewModel>));
+
+            if (context.Metadata.ModelType == typeof(DateTime?) || context.Metadata.ModelType == typeof(DateTime))
+                return new BinderTypeModelBinder(typeof(DateTimeModelBinder));
 
             return null;
         }

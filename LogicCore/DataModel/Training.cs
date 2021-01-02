@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogicCore.Util;
+using System;
 using System.Collections.Generic;
 
 namespace LogicCore
@@ -13,8 +14,10 @@ namespace LogicCore
 
         public int? Id { get; set; }
 
+        [RequiredLocalized]
         public int? TeamTrainingId { get; set; }
 
+        [RequiredLocalized]
         public string UserId { get; set; }
 
         public List<Task> Tasks { get; set; }

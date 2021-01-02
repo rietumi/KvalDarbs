@@ -9,7 +9,7 @@ namespace LogicCore
     public class Team : IEntity
     {
         [RequiredLocalized]
-        [StringLength(100)]
+        [StringLengthLocalized(100)]
         [Display(Name = "Title", ResourceType = typeof(Text))]
         public string Name { get; set; }
 
@@ -22,7 +22,7 @@ namespace LogicCore
         public int? Id { get; set; }
 
         [RequiredLocalized]
-        [StringLength(4000)]
+        [StringLengthLocalized(4000)]
         [Display(Name = "Description", ResourceType = typeof(Text))]
         public string Description { get; set; }
 
@@ -40,5 +40,14 @@ namespace LogicCore
         /// </summary>
         [NotMapped]
         public List<SelectListItem> PossibleMembers { get; set; }
+
+        /// <summary>
+        /// For results.
+        /// </summary>
+        [NotMapped]
+        public List<Result> Results { get; set; }
+
+        [NotMapped]
+        public CompetitionType ResultFilter { get; set; }
     }
 }

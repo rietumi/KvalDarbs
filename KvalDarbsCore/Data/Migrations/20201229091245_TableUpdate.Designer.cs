@@ -4,14 +4,16 @@ using KvalDarbsCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KvalDarbsCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201229091245_TableUpdate")]
+    partial class TableUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,6 +64,7 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
@@ -136,9 +139,6 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("Date")
                         .IsRequired()
                         .HasColumnType("datetime2");
@@ -160,8 +160,6 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.ToTable("Competitions");
                 });
@@ -193,9 +191,6 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(4000)")
@@ -207,8 +202,6 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.ToTable("Exercises");
                 });
@@ -553,25 +546,11 @@ namespace KvalDarbsCore.Data.Migrations
                         .HasForeignKey("TaskId");
                 });
 
-            modelBuilder.Entity("LogicCore.Competition", b =>
-                {
-                    b.HasOne("LogicCore.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-                });
-
             modelBuilder.Entity("LogicCore.Example", b =>
                 {
                     b.HasOne("LogicCore.Exercise", null)
                         .WithMany("Examples")
                         .HasForeignKey("ExerciseId");
-                });
-
-            modelBuilder.Entity("LogicCore.Exercise", b =>
-                {
-                    b.HasOne("LogicCore.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("LogicCore.Goal", b =>
@@ -620,7 +599,7 @@ namespace KvalDarbsCore.Data.Migrations
 
             modelBuilder.Entity("LogicCore.TeamTraining", b =>
                 {
-                    b.HasOne("LogicCore.Team", "Team")
+                    b.HasOne("LogicCore.Team", null)
                         .WithMany("TeamTrainings")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)

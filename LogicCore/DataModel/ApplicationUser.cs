@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LogicCore.Util;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LogicCore
 {
@@ -10,8 +12,21 @@ namespace LogicCore
         {
         }
 
+        [EmailAddress]
+        [StringLengthLocalized(50)]
+        [RequiredLocalized]
+        public override string Email { get; set; }
+
+        [Phone]
+        [StringLengthLocalized(20)]
+        public override string PhoneNumber { get; set; }
+
+        [StringLengthLocalized(50)]
+        [RequiredLocalized]
         public string Name { get; set; }
 
+        [StringLengthLocalized(50)]
+        [RequiredLocalized]
         public string Surname { get; set; }
 
         public int Reminder { get; set; }

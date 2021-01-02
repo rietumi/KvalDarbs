@@ -1,7 +1,9 @@
 ﻿ko.bindingHandlers.date = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
         $(element).datepicker();
+        $(element).datepicker("option", "dateFormat", "dd/mm/yy");
         $(element).attr("maxlength", "10");
+        $(element).attr("autocomplete", "off");
 
         var defaultdate = ko.utils.unwrapObservable(allBindingsAccessor()['defaultDate']);
         if (defaultdate != null)
@@ -12,6 +14,10 @@
         if (!rawDate)
             return;
         var parsedDate = new Date(rawDate);
+
+        if (isNaN(parsedDate.getTime()))
+            parsedDate = rawDate;
+
         var formattedDate = $.datepicker.formatDate("dd/mm/yy", parsedDate);
 
         if ($(element).is('span'))

@@ -7,15 +7,31 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+nav.navbar {
+    background-color: rgba(40, 128, 218, 0.81);
+}
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: rgba(40, 128, 218, 0.81);
+    border-color: rgba(40, 128, 218, 0.81);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: rgba(40, 128, 218, 0.95);
+    border-color: rgba(40, 128, 218, 0.95);
+}
+
+.btn.btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: rgb(40, 128, 218);
+    border-color: rgb(40, 128, 218);
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {

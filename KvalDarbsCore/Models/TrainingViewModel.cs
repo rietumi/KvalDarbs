@@ -39,6 +39,8 @@ namespace KvalDarbsCore.Models
         {
             if (string.IsNullOrEmpty(this.User))
                 yield return new ValidationResult(string.Format(ErrorText.Required, Text.Name));
+
+            this.Tasks.RemoveAll(m => m.IsEmpty);
         }
     }
 }

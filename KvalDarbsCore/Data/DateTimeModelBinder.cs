@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Threading.Tasks;
 
 namespace KvalDarbsCore.Data
 {
-    public class DataModelBinder<T> : IModelBinder
+    public class DateTimeModelBinder : IModelBinder
     {
         private readonly ApplicationDbContext _context;
 
-        public DataModelBinder(ApplicationDbContext context)
+        public DateTimeModelBinder(ApplicationDbContext context)
         {
             this._context = context;
         }
@@ -42,7 +41,7 @@ namespace KvalDarbsCore.Data
                 return Task.CompletedTask;
             }
 
-            var result = JsonConvert.DeserializeObject<T>(value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+            var result = DateTime.ParseExact(value, "dd/M/yyyy", null);
 
             bindingContext.Result = ModelBindingResult.Success(result);
 

@@ -268,6 +268,15 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lauks &apos;{0}&apos; maksimālais pieļaujamais garums ir {1}.
+        /// </summary>
+        public static string StringLength {
+            get {
+                return ResourceManager.GetString("StringLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lietotājam jau ir parole.
         /// </summary>
         public static string UserAlreadyHasPassword {

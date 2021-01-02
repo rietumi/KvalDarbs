@@ -1,0 +1,52 @@
+﻿@using LogicCore;
+@model Competition
+
+@{
+    ViewData["Title"] = Text.Delete;
+    Layout = "_Layout";
+}
+
+<h1>@Text.Delete</h1>
+
+<div>
+    <h4>@Text.Competition</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@Text.Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary ml-1">@Text.Back</a>
+    </form>
+</div>

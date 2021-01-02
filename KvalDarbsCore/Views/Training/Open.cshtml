@@ -8,9 +8,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12 col-xl-6">
-            <h3>@Text.Training: @this.Model.Name</h3>
-            <p>@this.Model.Date.Value.ToShortDateString()</p>
+        <div class="col-12">
+            <div class="float-left">
+                <h3>@Text.Training: @this.Model.Name</h3>
+                <p>@this.Model.Date.Value.ToString("dd/MM/yyyy")</p>
+            </div>
+            @this.Html.ActionLink(Text.BackToTeam, "Open", "Team", new { id = this.Model.TeamId }, new { @class = "btn btn-primary float-right ml-1 mb-1" })
+            @this.Html.ActionLink(Text.BackToList, "Index", "Training", null, new { @class = "btn btn-primary float-right mb-1" })
         </div>
     </div>
     <div class="row">
@@ -27,9 +31,18 @@
                             <li class="list-group-item">
                                 <div class="col-12 col-sm-6">
                                     <p>@Text.Exercise: @task.Exercise.Name</p>
-                                    <p>@Text.Repetition: @task.Repetition</p>
-                                    <p>@Text.Time: @task.Time</p>
-                                </div>
+                                    <p>@Text.Description: @task.Exercise.Description</p>
+
+                                    @if (!string.IsNullOrEmpty(task.Repetition))
+                                    {
+                                        <p>@Text.Repetition: @task.Repetition</p>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(task.Time))
+                                    {
+                                        <p>@Text.Time: @task.Time</p>
+                                    }
+                                    </div>
                                 <div class="col-12 col-sm-6">
 
                                 </div>

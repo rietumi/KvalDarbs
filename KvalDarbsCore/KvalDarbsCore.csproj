@@ -6,6 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20201228110725_Ierobezojumi.cs" />
+    <Compile Remove="Data\Migrations\20201228110725_Ierobezojumi.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201229081110_IerobezojumiTabulam.cs" />
+    <Compile Remove="Data\Migrations\20201229081110_IerobezojumiTabulam.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201229082829_InitalDatabase.cs" />
+    <Compile Remove="Data\Migrations\20201229082829_InitalDatabase.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201229085133_Initial.cs" />
+    <Compile Remove="Data\Migrations\20201229085133_Initial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201229090519_TableUpdate.cs" />
+    <Compile Remove="Data\Migrations\20201229090519_TableUpdate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201229090736_TableUpdate.cs" />
+    <Compile Remove="Data\Migrations\20201229090736_TableUpdate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201229090855_TableUpdate.cs" />
+    <Compile Remove="Data\Migrations\20201229090855_TableUpdate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201229091139_TableUpdate.cs" />
+    <Compile Remove="Data\Migrations\20201229091139_TableUpdate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\js\Team.js" />
   </ItemGroup>
 

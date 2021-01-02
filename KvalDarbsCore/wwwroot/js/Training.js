@@ -1,4 +1,5 @@
 ﻿var viewModel = ko.mapping.fromJS(initial);
+
 var TaskViewModel = function (model) {
     if (model) {
         return ko.mapping.fromJS(model);
@@ -9,7 +10,7 @@ var TaskViewModel = function (model) {
         self.Time = ko.observable("");
         self.Exercise = ko.observable("");
     }
-}
+};
 
 viewModel.AddTraining = function () {
     viewModel.Trainings.push({
@@ -21,6 +22,10 @@ viewModel.AddTraining = function () {
 viewModel.RemoveTraining = function (training) {
     viewModel.Trainings.remove(training);
 };
+
+viewModel.Open = function () {
+    $(".exerciseToggle").toggle();
+}
 
 viewModel.CloneTraining = function (training) {
     var tasks = [];
@@ -62,21 +67,32 @@ viewModel.Exercise = {
 }
 
 viewModel.AddExercise = function () {
+    $("#exerciseAddButton").prop('disabled', true);
     $.ajax({
         method: "POST",
         url: exerciseUrl,
-        data: { __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),Name: viewModel.Exercise.Name, Description: viewModel.Exercise.Description },
+        data: { __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(), Name: viewModel.Exercise.Name, Description: viewModel.Exercise.Description },
         dataType: "json",
         success: function (data) {
-            viewModel.Exercises.push({
-                Key: data.Key,
-                Value: data.Value
-            });
+            if (data.Key != 0) {
+                viewModel.Exercises.push({
+                    Key: data.Key,
+                    Value: data.Value
+                });
+                viewModel.Exercise.Name("");
+                viewModel.Exercise.Description("");
+                alert("Vingrinājums veiksmīgi pievienots!");
+            }
+            else {
+                alert(data.Value);
+            }
         },
-        error: function (request, status, error) {
-            alert(ko.toJSON(viewModel.Exercise));
+        error: function () {
+            alert("Darbība neizdevās");
+        },
+        complete: function () {
+            $("#exerciseAddButton").prop('disabled', false);
         }
-
     });
 }
 

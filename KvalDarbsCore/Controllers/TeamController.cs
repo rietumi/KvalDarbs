@@ -29,7 +29,7 @@ namespace KvalDarbsCore.Controllers
         {
             List<Team> teams = new List<Team>();
 
-            var user = _context.Users.FirstOrDefault(m => m.Id == HttpContext.User.GetLoggedInUserId<string>());
+            var user = _context.GetActiveUser(this.HttpContext);
 
             if (user != null)
             {
@@ -78,9 +78,12 @@ namespace KvalDarbsCore.Controllers
         }
 
         [HttpGet]
-        public ActionResult Open(int id)
+        public ActionResult Open(int? id, int? ResultFilter)
         {
-            var team = _context.GetTeamById(id);
+            if (!id.HasValue)
+                return NotFound();
+
+            var team = _context.GetTeamById(id.Value);
             var user = _context.GetActiveUser(this.HttpContext);
 
             if (team == null || !team.BelongsToTeam(user))
@@ -89,6 +92,15 @@ namespace KvalDarbsCore.Controllers
             // Selects all users that aren't part of the team.
             team.PossibleMembers = new List<SelectListItem>() { new SelectListItem(string.Empty, string.Empty) };
             team.PossibleMembers.AddRange(_context.Users.Where(u => _context.UserTeams.FirstOrDefault(ut => ut.TeamId == team.Id && ut.UserId == u.Id) == null).Select(m => new SelectListItem(m.FullName, m.Id)).AsEnumerable().OrderBy(s => s.Text));
+            team.Results = new List<Result>();
+            team.Results.AddRange(_context.Results.Include(m => m.Athlete).Include(m => m.Competition).Where(r => _context.UserTeams.FirstOrDefault(m => m.TeamId == team.Id && r.AthleteId == m.UserId) != null));
+            
+            if (ResultFilter.HasValue)
+            {
+                team.Results = team.Results.Where(m => (int)m.Competition.Type == ResultFilter.Value).ToList();
+            }
+
+            team.Results = team.Results.OrderBy(r => r.Time).ToList();
 
             var memberError = TempData["MemberError"] as string;
             if (!string.IsNullOrEmpty(memberError))

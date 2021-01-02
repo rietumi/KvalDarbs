@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using KvalDarbsCore.Data;
 using KvalDarbsCore.Models;
@@ -29,7 +30,7 @@ namespace KvalDarbsCore.Controllers
         public ActionResult Index()
         {
             var userId = _context.GetActiveUser(this.HttpContext)?.Id;
-            var teamTrainings = _context.TeamTrainings.Include(m => m.Trainings).ThenInclude(m => m.User).Where(m => m.Trainings.Count(m => m.UserId == userId) != 0).ToList();
+            var teamTrainings = _context.TeamTrainings.Include(m => m.Team).ThenInclude(m => m.Coach).Include(m => m.Trainings).ThenInclude(m => m.User).Where(m => m.Trainings.Count(m => m.UserId == userId) != 0).ToList();
             return View(teamTrainings);
         }
 
@@ -109,8 +110,11 @@ namespace KvalDarbsCore.Controllers
         }
 
         [HttpGet]
-        public ActionResult Open(int id)
+        public ActionResult Open(int? id)
         {
+            if (!id.HasValue)
+                return NotFound();
+
             var teamTraining = _context.TeamTrainings.Include(m => m.Trainings).ThenInclude(m => m.Tasks).ThenInclude(m => m.Exercise).Include(m => m.Trainings).ThenInclude(m => m.User).AsNoTracking().FirstOrDefault(m => m.Id == id);
             
             if (teamTraining.Trainings == null)
@@ -132,15 +136,18 @@ namespace KvalDarbsCore.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (!id.HasValue)
+                return NotFound();
+
             var result = new TeamTrainingViewModel();
 
             try
             {
-                result = new TeamTrainingViewModel(_context, id);
+                result = new TeamTrainingViewModel(_context, id.Value);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return RedirectToAction("Index");
             }
@@ -154,7 +161,7 @@ namespace KvalDarbsCore.Controllers
             if (team == null)
                 return RedirectToAction("Index");
 
-            result.Members = team.Members.Where(m => m.UserId == currentUser.Id).Select(m => new KeyValuePair<string, string>(m.UserId, m.User.FullName)).ToList();
+            result.Members = team.Members.Where(m => m.UserId != currentUser.Id).Select(m => new KeyValuePair<string, string>(m.UserId, m.User.FullName)).ToList();
             result.Exercises = _context.Exercises.Select(m => new KeyValuePair<int?, string>(m.Id.Value, m.Name)).ToList();
             result.Exercises.Insert(0, new KeyValuePair<int?, string>(null, string.Empty));
 
@@ -176,15 +183,22 @@ namespace KvalDarbsCore.Controllers
             return RedirectToAction("Open", "Team", new { id = tt.TeamId });
         }
 
+        /// <summary>
+        /// Add exercise to exercise list(VM-06).
+        /// </summary>
+        /// <param name="exercise">Exercise.</param>
+        /// <returns>Exercise for dropdown or error list.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult AddExercise(string Name, string Description)
+        public JsonResult AddExercise([Bind("Description,Name,Id")] Exercise exercise)
         {
-            var exercise = new Exercise()
+            if (!ModelState.IsValid)
             {
-                Name = Name,
-                Description = Description
-            };
+                return new JsonResult(new KeyValuePair<int, string>(0, string.Join(";\n", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage))));
+            }
+
             _context.Exercises.Add(exercise);
             _context.SaveChanges();
 

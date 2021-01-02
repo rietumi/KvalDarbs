@@ -186,6 +186,9 @@
   <data name="Required" xml:space="preserve">
     <value>Lauks '{0}' ir jāaizpilda obligāti</value>
   </data>
+  <data name="StringLength" xml:space="preserve">
+    <value>Lauks '{0}' maksimālais pieļaujamais garums ir {1}</value>
+  </data>
   <data name="UserAlreadyHasPassword" xml:space="preserve">
     <value>Lietotājam jau ir parole</value>
   </data>

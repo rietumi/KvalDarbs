@@ -1,0 +1,61 @@
+﻿@using LogicCore
+@model Competition
+
+@{
+    ViewData["Title"] = Text.Details;
+    Layout = "_Layout";
+    var userId = (string)ViewData["ActiveUserId"];
+}
+
+<h1>@Text.Details</h1>
+
+<div class="clearfix">
+    <div class="float-left">
+        <h4>@Text.Competition</h4>
+    </div>
+    <div class="float-right">
+        <a asp-action="CreateResult" asp-route-id="@this.Model.Id" class="float-right btn btn-primary">@Text.AddResult</a>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (Model.AuthorId == userId)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">@Text.Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-primary ml-1">@Text.Back</a>
+</div>
