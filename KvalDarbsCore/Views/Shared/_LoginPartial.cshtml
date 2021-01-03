@@ -7,6 +7,11 @@
 <ul class="navbar-nav border-left border-dark">
 @if (SignInManager.IsSignedIn(User))
 {
+    <li class="nav-item dropdown">
+        @{
+            this.Html.RenderPartial("_Notifications");
+        }
+    </li>
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><strong>@string.Format(Text.Hello, UserManager.GetUserAsync(User).Result.FullName)</strong></a>
     </li>

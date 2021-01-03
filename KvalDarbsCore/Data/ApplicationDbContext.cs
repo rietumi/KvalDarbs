@@ -1,4 +1,5 @@
 ﻿using LogicCore;
+using LogicCore.DataModel.Notifications;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,7 @@ namespace KvalDarbsCore.Data
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamTraining> TeamTrainings { get; set; }
         public DbSet<Training> Trainings { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         // ManyToMany tables
         public DbSet<UserTeam> UserTeams { get; set; }
@@ -47,6 +49,7 @@ namespace KvalDarbsCore.Data
             builder.Entity<Team>();
             builder.Entity<TeamTraining>();
             builder.Entity<Training>();
+            builder.Entity<Notification>();
 
             // ManyToMany tables
             builder.Entity<UserTeam>().HasKey(ut => new { ut.UserId, ut.TeamId });

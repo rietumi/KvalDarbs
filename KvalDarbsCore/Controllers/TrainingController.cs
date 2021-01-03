@@ -16,14 +16,11 @@ namespace KvalDarbsCore.Controllers
 {
     public class TrainingController : AuthorizedController
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IMemoryCache _cache;
         private readonly ILogger<TrainingController> _logger;
 
-        public TrainingController(ApplicationDbContext context, IMemoryCache memoryCache, ILogger<TrainingController> logger)
+        public TrainingController(ApplicationDbContext context, ILogger<TrainingController> logger)
+            : base (context)
         {
-            _context = context;
-            _cache = memoryCache;
             _logger = logger;
         }
 
@@ -57,7 +54,7 @@ namespace KvalDarbsCore.Controllers
             };
 
             // Can't assign training to coach.
-            viewModel.Members = team.Members.Where(m => m.UserId != currentUser.Id).Select(m => new KeyValuePair<string, string>(m.UserId, m.User.FullName)).ToList();
+            viewModel.Members = team.Members.Select(m => new KeyValuePair<string, string>(m.UserId, m.User.FullName)).ToList();
             viewModel.Exercises = _context.Exercises.Select(m => new KeyValuePair<int?, string>(m.Id.Value, m.Name)).ToList();
             viewModel.Exercises.Insert(0, new KeyValuePair<int?, string>(null, string.Empty));
             return View(viewModel);
@@ -94,7 +91,6 @@ namespace KvalDarbsCore.Controllers
                         team.TeamTrainings.Add(result);
                         _context.Teams.Update(team);
                         _context.SaveChanges();
-                        new TeamController(_context, _cache).RemoveTeamCacheForUsers(team.Members.Select(m => m.UserId));
                     }
                     transaction.Commit();
                 }
@@ -120,13 +116,16 @@ namespace KvalDarbsCore.Controllers
             if (teamTraining.Trainings == null)
                 return RedirectToAction("Open", "Team", new { id = teamTraining.TeamId });
 
+            if (_context.IsCoach(teamTraining.TeamId, _context.GetActiveUser(this.HttpContext)))
+            {
+                return View(teamTraining);
+            }
+
             var training = teamTraining.Trainings.FirstOrDefault(m => m.UserId == _context.GetActiveUser(this.HttpContext)?.Id);
 
             if (training == null)
             {
-                if (!_context.IsCoach(teamTraining.TeamId, _context.GetActiveUser(this.HttpContext)))
-                    return RedirectToAction("Open", "Team", new { id = teamTraining.TeamId });
-                return View(teamTraining);
+                return RedirectToAction("Open", "Team", new { id = teamTraining.TeamId });
             }
             else
             {
@@ -161,7 +160,7 @@ namespace KvalDarbsCore.Controllers
             if (team == null)
                 return RedirectToAction("Index");
 
-            result.Members = team.Members.Where(m => m.UserId != currentUser.Id).Select(m => new KeyValuePair<string, string>(m.UserId, m.User.FullName)).ToList();
+            result.Members = team.Members.Select(m => new KeyValuePair<string, string>(m.UserId, m.User.FullName)).ToList();
             result.Exercises = _context.Exercises.Select(m => new KeyValuePair<int?, string>(m.Id.Value, m.Name)).ToList();
             result.Exercises.Insert(0, new KeyValuePair<int?, string>(null, string.Empty));
 

@@ -12,11 +12,9 @@ namespace KvalDarbsCore.Controllers
 {
     public class CompetitionsController : AuthorizedController
     {
-        private readonly ApplicationDbContext _context;
-
         public CompetitionsController(ApplicationDbContext context)
+            : base (context)
         {
-            _context = context;
         }
 
         // GET: Competitions
@@ -238,6 +236,9 @@ namespace KvalDarbsCore.Controllers
             {
                 return Unauthorized();
             }
+
+            if (!CompetitionExists(result.CompetitionId))
+                return NotFound();
 
             if (ModelState.IsValid)
             {

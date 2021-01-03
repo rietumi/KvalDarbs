@@ -9,38 +9,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.EntityFrameworkCore;
+using LogicCore.DataModel.Notifications;
 
 namespace KvalDarbsCore.Controllers
 {
     public class TeamController : AuthorizedController
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IMemoryCache _cache;
-        private const string _teamsKey = "Teams_{0}";
-
-        public TeamController(ApplicationDbContext context, IMemoryCache memoryCache)
+        public TeamController(ApplicationDbContext context)
+            : base (context)
         {
-            _context = context;
-            _cache = memoryCache;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            List<Team> teams = new List<Team>();
-
             var user = _context.GetActiveUser(this.HttpContext);
 
-            if (user != null)
+            if (user == null)
             {
-                var key = string.Format(_teamsKey, user.Id);
-
-                if (!_cache.TryGetValue(key, out teams))
-                {
-                    teams = _context.Teams.Include(m => m.Members).ThenInclude(m => m.User).Where(t => t.Members.FirstOrDefault(m => m.UserId == user.Id) != null).ToList();
-                    _cache.Set(key, teams, TimeSpan.FromMinutes(5));
-                }
+                return Unauthorized();
             }
+
+            List<Team> teams = _context.Teams.Include(m => m.Members).ThenInclude(m => m.User).Where(t => t.Members.FirstOrDefault(m => m.UserId == user.Id) != null).ToList();
 
             return View(teams);
         }
@@ -72,7 +62,6 @@ namespace KvalDarbsCore.Controllers
             _context.UserTeams.Add(userTeam);
             _context.Teams.Update(team);
             _context.SaveChanges();
-            this.RemoveTeamCacheForUsers(_context.Teams.Include(m => m.Members).FirstOrDefault(m => m.Id == team.Id).Members.Select(m => m.UserId));
 
             return RedirectToAction("Open", new { id = team.Id });
         }
@@ -120,15 +109,20 @@ namespace KvalDarbsCore.Controllers
 
             var newMember = _context.Users.FirstOrDefault(m => m.Id == team.NewMemberId);
 
-            if (newMember != null)
+            if (newMember == null)
             {
-                _context.UserTeams.Add(new UserTeam { TeamId = team.Id.Value, User = newMember, UserId = newMember.Id });
-                _context.SaveChanges();
-                this.RemoveTeamCacheForUsers(_context.Teams.Include(m => m.Members).FirstOrDefault(m => m.Id == team.Id).Members.Select(m => m.UserId));
+                TempData["MemberError"] = "Neizdevās pievienot lietotāju.";
+            }
+            else if (_context.Notifications.FirstOrDefault(n => n.TeamId == team.Id && n.UserId == newMember.Id && n.Actual) != null)
+            {
+                TempData["MemberError"] = "Lietotājam jau ir nosūtīts uzaicinājums.";
             }
             else
             {
-                TempData["MemberError"] = "Neizdevās pievienot lietotāju.";
+                var notification = new Notification(team.Id, newMember.Id, $"Komanda \"{team.Name}\" vēlas, lai Jūs pievienojaties");
+                _context.Notifications.Add(notification);
+                _context.SaveChanges();
+                TempData["MemberError"] = "Lietotājam veiksmīgi nosūtīts uzaicinājums.";
             }
 
             return RedirectToAction("Open", new { id = team.Id });
@@ -150,7 +144,6 @@ namespace KvalDarbsCore.Controllers
             {
                 _context.UserTeams.Remove(deletable);
                 _context.SaveChanges();
-                this.RemoveTeamCacheForUsers(_context.Teams.Include(m => m.Members).FirstOrDefault(m => m.Id == teamId).Members.Select(m => m.UserId));
             }
 
             return RedirectToAction("Open", new { id = teamId });
@@ -168,20 +161,36 @@ namespace KvalDarbsCore.Controllers
             {
                 _context.Teams.Remove(deletable);
                 _context.SaveChanges();
-                this.RemoveTeamCacheForUsers(deletable.Members.Select(m => m.UserId));
             }
 
             return RedirectToAction("Index");
         }
 
-        /// <summary>
-        /// Maintains that users have updated team statuses.
-        /// </summary>
-        /// <param name="userIds">User ids.</param>
-        public void RemoveTeamCacheForUsers(IEnumerable<string> userIds)
+        [HttpGet]
+        public ActionResult AssignCoach(string userId, int teamId)
         {
-            foreach (var userId in userIds)
-                _cache.Remove(string.Format(_teamsKey, userId));
+            var currentUser = _context.GetActiveUser(this.HttpContext);
+            var isCoach = _context.IsCoach(teamId, currentUser);
+
+            // Coach can't assign himself from the team.
+            if (!isCoach || (isCoach && currentUser.Id == userId))
+                return RedirectToAction("Open", new { id = teamId });
+
+            var team = _context.Teams.Find(teamId);
+            var user = _context.Users.Find(userId);
+
+            if (team != null && user != null)
+            {
+                team.Coach = user;
+                _context.Update(team);
+                _context.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("Open", new { id = teamId });
         }
     }
 }

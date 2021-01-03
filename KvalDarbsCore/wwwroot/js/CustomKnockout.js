@@ -13,12 +13,16 @@
         var rawDate = ko.utils.unwrapObservable(valueAccessor());
         if (!rawDate)
             return;
-        var parsedDate = new Date(rawDate);
+        var formattedDate = rawDate;
 
-        if (isNaN(parsedDate.getTime()))
-            parsedDate = rawDate;
+        if (rawDate.indexOf('T') != -1) {
+            var parsedDate = new Date(rawDate);
 
-        var formattedDate = $.datepicker.formatDate("dd/mm/yy", parsedDate);
+            if (isNaN(parsedDate.getTime()))
+                parsedDate = rawDate;
+
+            formattedDate = $.datepicker.formatDate("dd/mm/yy", parsedDate);
+        }
 
         if ($(element).is('span'))
             $(element).html(formattedDate);

@@ -32,14 +32,15 @@
                 <ul class="list-group list-group-flush">
                     @foreach (var member in this.Model.Members)
                     {
-                        <li class="list-group-item">
-                            @member.User.FullName
+                    <li class="list-group-item">
+                        @member.User.FullName
 
-                            @if (isCoach && member.UserId != this.Model.Coach.Id)
-                            {
-                                @this.Html.ActionLink(Text.Delete, "DeleteMember", "Team", new { member.UserId, member.TeamId }, new { @class = "btn btn-danger btn-sm float-right ml-1" })
-                            }
-                        </li>
+                        @if (isCoach && member.UserId != this.Model.Coach.Id)
+                        {
+                            @this.Html.ActionLink(Text.Delete, "DeleteMember", "Team", new { member.UserId, member.TeamId }, new { @class = "btn btn-danger btn-sm float-right ml-1" })
+                            @this.Html.ActionLink(Text.AssignCoach, "AssignCoach", "Team", new { member.UserId, member.TeamId }, new { @class = "btn btn-primary btn-sm float-right ml-1" })
+                        }
+                    </li>
                     }
                 </ul>
 
@@ -53,6 +54,7 @@
                             @using (this.Html.BeginForm("AddMember", "Team", null, FormMethod.Post, true, null))
                             {
                                 @this.Html.HiddenFor(m => m.Id)
+                                @this.Html.HiddenFor(m => m.Name)
                                 <div class="form-group">
                                     @this.Html.LabelFor(m => m.NewMemberId)
                                     <button type="button" class="btn btn-danger btn-sm float-right addMemberToggler">X</button>

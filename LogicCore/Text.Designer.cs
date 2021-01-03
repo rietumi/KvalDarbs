@@ -124,6 +124,15 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Iecelt par treneri.
+        /// </summary>
+        public static string AssignCoach {
+            get {
+                return ResourceManager.GetString("AssignCoach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Atpakaļ.
         /// </summary>
         public static string Back {

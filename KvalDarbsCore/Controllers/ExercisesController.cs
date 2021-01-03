@@ -9,11 +9,9 @@ namespace KvalDarbsCore.Controllers
 {
     public class ExercisesController : AuthorizedController
     {
-        private readonly ApplicationDbContext _context;
-
         public ExercisesController(ApplicationDbContext context)
+            : base (context)
         {
-            _context = context;
         }
 
         /// <summary>

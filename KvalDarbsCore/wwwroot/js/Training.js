@@ -96,6 +96,28 @@ viewModel.AddExercise = function () {
     });
 }
 
+viewModel.Move = function (task, training, direction) {
+    var index = training.Tasks.indexOf(task);
+    if (index == -1)
+        return;
+
+    if (direction == 'up') {
+        if (index == 0)
+            return;
+
+        var rawTasks = training.Tasks();
+        training.Tasks.splice(index - 1, 2, rawTasks[index], rawTasks[index - 1]);
+    }
+
+    if (direction == 'down') {
+        if (index == training.Tasks.length - 1)
+            return;
+
+        var rawTasks = training.Tasks();
+        training.Tasks.splice(index, 2, rawTasks[index + 1], rawTasks[index]);
+    }
+};
+
 $(function () {
     ko.applyBindings(viewModel);
 });

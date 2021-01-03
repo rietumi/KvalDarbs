@@ -1,4 +1,5 @@
-﻿using LogicCore.Util;
+﻿using LogicCore.DataModel.Notifications;
+using LogicCore.Util;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -32,6 +33,8 @@ namespace LogicCore
         public int Reminder { get; set; }
 
         public List<UserTeam> UserTeams { get; set; }
+
+        public List<Notification> Notifications { get; set; }
 
         public string FullName
         {
