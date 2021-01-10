@@ -124,7 +124,7 @@ namespace LogicCore {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Iecelt par treneri.
+        ///   Looks up a localized string similar to Uzstādīt par treneri.
         /// </summary>
         public static string AssignCoach {
             get {
@@ -403,6 +403,15 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nav rezultātu.
+        /// </summary>
+        public static string NoResult {
+            get {
+                return ResourceManager.GetString("NoResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nav komandu.
         /// </summary>
         public static string NoTeam {
@@ -453,6 +462,15 @@ namespace LogicCore {
         public static string Privacy {
             get {
                 return ResourceManager.GetString("Privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profils.
+        /// </summary>
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
             }
         }
         
@@ -547,6 +565,15 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sportists.
+        /// </summary>
+        public static string Sportsmen {
+            get {
+                return ResourceManager.GetString("Sportsmen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sākums.
         /// </summary>
         public static string Start {
@@ -633,6 +660,15 @@ namespace LogicCore {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Atjaunot.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

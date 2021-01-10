@@ -151,6 +151,24 @@ namespace LogicCore {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Laukā “E-pasts” ir norādīta nederīga e-pasta adrese..
+        /// </summary>
+        public static string InvalidEmailAddress {
+            get {
+                return ResourceManager.GetString("InvalidEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laukā “Telefona numurs” nav ievadīts derīgs telefona numurs..
+        /// </summary>
+        public static string InvalidPhone {
+            get {
+                return ResourceManager.GetString("InvalidPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nederīga loma &apos;{0}&apos;.
         /// </summary>
         public static string InvalidRoleName {
@@ -246,6 +264,15 @@ namespace LogicCore {
         public static string PasswordTooShort {
             get {
                 return ResourceManager.GetString("PasswordTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lauka &quot;{0}&quot; vērtībai ir jābūt robežā no {1} līdz {2}.
+        /// </summary>
+        public static string Range {
+            get {
+                return ResourceManager.GetString("Range", resourceCulture);
             }
         }
         

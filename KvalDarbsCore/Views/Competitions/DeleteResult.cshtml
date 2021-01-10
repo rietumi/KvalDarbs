@@ -1,0 +1,34 @@
+﻿@using LogicCore;
+@model Result
+
+@{
+    ViewData["Title"] = Text.Delete;
+    Layout = "_Layout";
+}
+
+<h1>@Text.Delete</h1>
+
+<div>
+    <h4>@Text.Result</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Text.Sportsmen
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Athlete.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Text.Time
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteResult">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@Text.Delete" class="btn btn-danger" />
+        <a asp-action="Details" asp-route-id="@Model.CompetitionId" class="btn btn-primary ml-1">@Text.Back</a>
+    </form>
+</div>

@@ -15,7 +15,7 @@
             return;
         var formattedDate = rawDate;
 
-        if (rawDate.indexOf('T') != -1) {
+        if (rawDate.indexOf('T') != -1 || rawDate.includes('12:00:00 AM')) {
             var parsedDate = new Date(rawDate);
 
             if (isNaN(parsedDate.getTime()))

@@ -1,21 +1,22 @@
-﻿@using LogicCore
+﻿@using LogicCore;
 @model Result
 
 @{
-    ViewData["Title"] = Text.Create;
+    ViewData["Title"] = Text.Edit;
     Layout = "_Layout";
 }
 
-<h1>@Text.Create</h1>
+<h1>@Text.Edit</h1>
 
 <h4>@Text.Result</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateResult">
+        <form asp-action="EditResult">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="AthleteId" type="hidden" value="@ViewData["AthleteId"]" />
-            <input asp-for="CompetitionId" type="hidden" value="@ViewData["CompetitionId"]" />
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="AthleteId" />
+            <input type="hidden" asp-for="CompetitionId" />
             <div class="form-group">
                 <label asp-for="Hours" class="control-label"></label>
                 <input asp-for="Hours" class="form-control" />
@@ -32,12 +33,13 @@
                 <span asp-validation-for="Seconds" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="@Text.Create" class="btn btn-primary" />
+                <input type="submit" value="@Text.Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Details" asp-route-id="@ViewData["CompetitionId"]" class="btn btn-primary">@Text.Back</a>
+    <a asp-action="Details" asp-route-id="@Model.CompetitionId" class="btn btn-primary">@Text.Back</a>
 </div>
+

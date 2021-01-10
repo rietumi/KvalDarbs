@@ -150,7 +150,7 @@ namespace KvalDarbsCore.Controllers
             if (user == null || string.IsNullOrEmpty(user.Id))
                 return Unauthorized();
 
-            if (_context.Exercises.Any(m => m.Id == id && m.AuthorId == user.Id))
+            if (!_context.Exercises.Any(m => m.Id == id && m.AuthorId == user.Id))
             {
                 return NotFound();
             }
@@ -159,6 +159,7 @@ namespace KvalDarbsCore.Controllers
             {
                 try
                 {
+                    exercise.AuthorId = user.Id;
                     _context.Update(exercise);
                     _context.SaveChanges();
                 }

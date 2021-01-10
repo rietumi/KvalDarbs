@@ -36,35 +36,28 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [RequiredLocalized]
-            [StringLength(50)]
-            [Display(Name = "Username", ResourceType = typeof(Text))]
-            public string Username { get; set; }
-
-            [RequiredLocalized]
-            [StringLength(50)]
+            [StringLengthLocalized(50)]
             [Display(Name = "Name", ResourceType = typeof(Text))]
             public string Name { get; set; }
 
             [RequiredLocalized]
-            [StringLength(50)]
+            [StringLengthLocalized(50)]
             [Display(Name = "Surname", ResourceType = typeof(Text))]
             public string Surname { get; set; }
 
-            [Phone]
+            [Phone(ErrorMessageResourceName = "InvalidPhone", ErrorMessageResourceType = typeof(ErrorText))]
             [Display(Name = "PhoneNumber", ResourceType = typeof(Text))]
             public string PhoneNumber { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            var userName = user.UserName;
             var phoneNumber = user.PhoneNumber;
             var name = user.Name;
             var surname = user.Surname;
 
             Input = new InputModel
             {
-                Username = userName,
                 Name = name,
                 Surname = surname,
                 PhoneNumber = phoneNumber
@@ -76,7 +69,7 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nevar atvērt lietotāju ar ID: '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync(user);
@@ -88,7 +81,7 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nevar atvērt lietotāju ar ID: '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -111,12 +104,6 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
                 user.Surname = Input.Surname;
             }
 
-            if (user.UserName != Input.Username)
-            {
-                changes = true;
-                user.UserName = Input.Username;
-            }
-
             if (user.PhoneNumber != Input.PhoneNumber)
             {
                 changes = true;
@@ -129,12 +116,11 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
 
                 if (!updateUser.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
 
                 await _signInManager.RefreshSignInAsync(user);
-                StatusMessage = "Your profile has been updated";
+                StatusMessage = "Jūsu profila informācija ir veiksmīgi atjaunota";
             }
             return RedirectToPage();
         }

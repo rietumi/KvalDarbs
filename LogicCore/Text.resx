@@ -139,7 +139,7 @@
     <value>Sporta komanda</value>
   </data>
   <data name="AssignCoach" xml:space="preserve">
-    <value>Iecelt par treneri</value>
+    <value>Uzstādīt par treneri</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Atpakaļ</value>
@@ -231,6 +231,9 @@
   <data name="NoHistory" xml:space="preserve">
     <value>Nav vēsturisko treniņu</value>
   </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>Nav rezultātu</value>
+  </data>
   <data name="NoTeam" xml:space="preserve">
     <value>Nav komandu</value>
   </data>
@@ -248,6 +251,9 @@
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privātums</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profils</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Reģistrēties</value>
@@ -279,6 +285,9 @@
   <data name="Search" xml:space="preserve">
     <value>Meklēt</value>
   </data>
+  <data name="Sportsmen" xml:space="preserve">
+    <value>Sportists</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Sākums</value>
   </data>
@@ -308,6 +317,9 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Tips</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Atjaunot</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Lietotājvārds</value>

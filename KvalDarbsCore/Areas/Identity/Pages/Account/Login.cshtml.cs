@@ -46,8 +46,8 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account
         public class InputModel
         {
             [RequiredLocalized]
-            [StringLength(50)]
-            [EmailAddress]
+            [StringLengthLocalized(50)]
+            [EmailAddress(ErrorMessageResourceName = "InvalidEmailAddress", ErrorMessageResourceType = typeof(ErrorText))]
             [Display(Name = "Email", ResourceType = typeof(Text))]
             public string Email { get; set; }
 

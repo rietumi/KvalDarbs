@@ -4,6 +4,8 @@
         url: "/Authorized/DismissNotification/" + id,
         dataType: "json",
         success: function (data) {
+            if (data == "Failed")
+                alert("Neveiksmīga darbība");
             console.log(data);
             notifications();
         }
@@ -16,6 +18,8 @@ var approve = function (id) {
         url: "/Authorized/ApproveNotification/" + id,
         dataType: "json",
         success: function (data) {
+            if (data == "Failed")
+                alert("Neveiksmīga darbība");
             console.log(data);
             notifications();
         }

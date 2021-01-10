@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Task = System.Threading.Tasks.Task;
+using LogicCore.Util;
 
 namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
 {
@@ -33,6 +34,7 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
 
+        [Display(Name = "Email", ResourceType = typeof(Text))]
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -45,9 +47,9 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "New email")]
+            [RequiredLocalized]
+            [EmailAddress(ErrorMessageResourceName = "InvalidEmailAddress", ErrorMessageResourceType = typeof(ErrorText))]
+            [Display(Name = "Jauns e-pasts")]
             public string NewEmail { get; set; }
         }
 
@@ -105,11 +107,11 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage = "Apstiprinājuma e-pasts ir nosūtīts. Lūdzu pārbaudiet e-pastu.";
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = "E-pasts nav mainīts.";
             return RedirectToPage();
         }
 
@@ -141,7 +143,7 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Apstiprinājuma e-pasts ir nosūtīts. Lūdzu pārbaudiet e-pastu.";
             return RedirectToPage();
         }
     }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using LogicCore;
+using LogicCore.Util;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -34,20 +35,20 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [RequiredLocalized]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Esošā parole")]
             public string OldPassword { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [RequiredLocalized]
+            [StringLengthLocalized(100)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Jaunā parole")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Atkārtota jaunā parole")]
+            [Compare("NewPassword", ErrorMessage = "Jaunā parole un atkārtotā jaunā parole nesakrīt.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -93,7 +94,7 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = "Jūsu parole ir veiksmīgi nomainīta.";
 
             return RedirectToPage();
         }

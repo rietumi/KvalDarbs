@@ -20,15 +20,18 @@ namespace LogicCore
         public Competition Competition { get; set; }
 
         [RequiredLocalized]
-        [Range(0,99)]
+        [RangeLocalized(0,99)]
+        [Display(Name = "Stundas")]
         public int? Hours { get; set; }
 
         [RequiredLocalized]
-        [Range(0, 59)]
+        [RangeLocalized(0, 59)]
+        [Display(Name = "Minūtes")]
         public int? Minutes { get; set; }
 
         [RequiredLocalized]
-        [Range(0, 59)]
+        [RangeLocalized(0, 59)]
+        [Display(Name = "Sekundes")]
         public int? Seconds { get; set; }
 
         public List<Comment> Comments { get; set; }

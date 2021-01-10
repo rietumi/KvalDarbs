@@ -1,4 +1,5 @@
-﻿using LogicCore.Util;
+﻿using LogicCore.DataModel.Notifications;
+using LogicCore.Util;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,6 +19,8 @@ namespace LogicCore
         public List<UserTeam> Members { get; set; }
 
         public List<TeamTraining> TeamTrainings { get; set; }
+
+        public List<Notification> Notifications { get; set; }
 
         public int? Id { get; set; }
 

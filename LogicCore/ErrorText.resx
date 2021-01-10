@@ -147,6 +147,12 @@
   <data name="InvalidEmail" xml:space="preserve">
     <value>Nederīgs e-pasts '{0}'</value>
   </data>
+  <data name="InvalidEmailAddress" xml:space="preserve">
+    <value>Laukā “E-pasts” ir norādīta nederīga e-pasta adrese.</value>
+  </data>
+  <data name="InvalidPhone" xml:space="preserve">
+    <value>Laukā “Telefona numurs” nav ievadīts derīgs telefona numurs.</value>
+  </data>
   <data name="InvalidRoleName" xml:space="preserve">
     <value>Nederīga loma '{0}'</value>
   </data>
@@ -179,6 +185,9 @@
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Parolei jābūt vismaz {0} simbolus garai</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Lauka "{0}" vērtībai ir jābūt robežā no {1} līdz {2}</value>
   </data>
   <data name="RecoveryCodeRedemptionFailed" xml:space="preserve">
     <value>Atgūšanas koda saņemšanā notika kļūda</value>

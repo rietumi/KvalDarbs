@@ -88,14 +88,22 @@ namespace KvalDarbsCore
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                if (!Configuration.GetValue<bool>("IsDevelopment"))
+                {
+                    app.UseExceptionHandler("/Home/Error");
+                }
+                else
+                {
+                    app.UseDeveloperExceptionPage();
+                    app.UseDatabaseErrorPage();
+                }
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

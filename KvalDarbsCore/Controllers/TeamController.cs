@@ -129,6 +129,23 @@ namespace KvalDarbsCore.Controllers
         }
 
         [HttpGet]
+        public ActionResult DeleteTeam(int teamId)
+        {
+            if (!_context.IsCoach(teamId, _context.GetActiveUser(this.HttpContext)))
+                return RedirectToAction("Open", new { id = teamId });
+
+            var deletable = _context.Teams.Include(m => m.Notifications).Include(m => m.Members).Include(m => m.TeamTrainings).ThenInclude(m => m.Trainings).ThenInclude(m => m.Tasks).FirstOrDefault(m => m.Id == teamId);
+
+            if (deletable != null)
+            {
+                _context.Teams.Remove(deletable);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public ActionResult DeleteMember(string userId, int teamId)
         {
             var currentUser = _context.GetActiveUser(this.HttpContext);
@@ -150,29 +167,12 @@ namespace KvalDarbsCore.Controllers
         }
 
         [HttpGet]
-        public ActionResult DeleteTeam(int teamId)
-        {
-            if (!_context.IsCoach(teamId, _context.GetActiveUser(this.HttpContext)))
-                return RedirectToAction("Open", new { id = teamId });
-
-            var deletable = _context.Teams.Include(m => m.Members).Include(m => m.TeamTrainings).ThenInclude(m => m.Trainings).ThenInclude(m => m.Tasks).FirstOrDefault(m => m.Id == teamId);
-
-            if (deletable != null)
-            {
-                _context.Teams.Remove(deletable);
-                _context.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
         public ActionResult AssignCoach(string userId, int teamId)
         {
             var currentUser = _context.GetActiveUser(this.HttpContext);
             var isCoach = _context.IsCoach(teamId, currentUser);
 
-            // Coach can't assign himself from the team.
+            // Coach can't assign himself as new coach.
             if (!isCoach || (isCoach && currentUser.Id == userId))
                 return RedirectToAction("Open", new { id = teamId });
 

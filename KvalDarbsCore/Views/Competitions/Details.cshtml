@@ -59,3 +59,52 @@
     }
     <a asp-action="Index" class="btn btn-primary ml-1">@Text.Back</a>
 </div>
+
+<table class="table mt-2">
+    <thead>
+        <tr>
+            <th>
+                @Text.Sportsmen
+            </th>
+            <th>
+                @Text.Time
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Results.Any())
+        {
+            <tr>
+                <td colspan="3">
+                    @Text.NoResult
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model.Results)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Athlete.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    <td>
+                        @if (item.AthleteId == userId)
+                        {
+                            <a asp-action="EditResult" asp-route-id="@item.Id" class="btn btn-primary mb-1">@Text.Edit</a>
+                        }
+                        <a asp-action="DetailsResult" asp-route-id="@item.Id" class="btn btn-primary ml-1 mb-1">@Text.Open</a>
+                        @if (item.AthleteId == userId)
+                        {
+                            <a asp-action="DeleteResult" asp-route-id="@item.Id" class="btn btn-primary ml-1 mb-1">@Text.Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

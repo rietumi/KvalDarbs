@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using LogicCore.Util;
 
 namespace KvalDarbsCore.Areas.Identity.Pages.Account
 {
@@ -31,8 +32,9 @@ namespace KvalDarbsCore.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [RequiredLocalized]
+            [EmailAddress(ErrorMessageResourceName = "InvalidEmailAddress", ErrorMessageResourceType = typeof(ErrorText))]
+            [Display(Name = "Email", ResourceType = typeof(Text))]
             public string Email { get; set; }
         }
 

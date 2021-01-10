@@ -4,12 +4,19 @@
 @{
     ViewData["Title"] = Text.Delete;
     Layout = "_Layout";
+    var resultsExist = (string)ViewData["ResultsExist"];
 }
 
 <h1>@Text.Delete</h1>
 
 <div>
     <h4>@Text.Competition</h4>
+    @if (!string.IsNullOrEmpty(resultsExist))
+    {
+        <ul>
+            <li>@resultsExist</li>
+        </ul>
+    }
     <hr />
     <dl class="row">
         <dt class="col-sm-2">

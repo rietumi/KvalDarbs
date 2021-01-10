@@ -31,6 +31,7 @@ viewModel.CloneTraining = function (training) {
     var tasks = [];
     training.Tasks().forEach(function (t) {
         task = new TaskViewModel(ko.toJS(t));
+        // New task shouldn't copy ID.
         task.TaskId = "";
         tasks.push(task);
     })

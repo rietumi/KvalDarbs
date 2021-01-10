@@ -8,7 +8,7 @@ namespace LogicCore
 {
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser() 
+        public ApplicationUser()
             : base()
         {
         }
@@ -35,6 +35,16 @@ namespace LogicCore
         public List<UserTeam> UserTeams { get; set; }
 
         public List<Notification> Notifications { get; set; }
+
+        public List<Team> Teams { get; set; }
+
+        public List<Training> Trainings { get; set; }
+
+        public List<Result> Results { get; set; }
+
+        public List<Exercise> Exercises { get; set; }
+
+        public List<Competition> Competitions { get; set; }
 
         public string FullName
         {
