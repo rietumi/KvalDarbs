@@ -138,7 +138,12 @@ namespace KvalDarbsCore.Controllers
 
             if (deletable != null)
             {
+                deletable.Notifications.ForEach(m => {
+                    m.Actual = false;
+                });
+
                 _context.Teams.Remove(deletable);
+                _context.UpdateRange(deletable.Notifications);
                 _context.SaveChanges();
             }
 
